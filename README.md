@@ -1,3 +1,3 @@
-# NixOS config
+# NixOS-Config
 
-I will be switching to nixos soon!
+These are my NixOS config files!
