@@ -12,6 +12,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
@@ -129,6 +130,15 @@
     enable = true;
     enableSSHSupport = true;
     pinentryFlavor = "gnome3";
+  };
+
+  # optimise store
+  nix.settings.auto-optimise-store = true;
+  # garbage collect packages
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 10d";
   };
 
   # List services that you want to enable:
