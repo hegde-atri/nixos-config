@@ -27,7 +27,7 @@
       alacritty
       btop 
       discord spotify 
-      mpv exa yt-dlp ncmpcpp mpd playerctl
+      mpv mpc exa yt-dlp ncmpcpp mpd playerctl
       rustup rust-analyzer go gopls ruby_3_1
       git gcc _7zz neovim neovide emacs vscode ripgrep fd
       jetbrains.rider jetbrains.webstorm
