@@ -100,6 +100,15 @@
     packages = with pkgs; [];
   };
 
+  # Session variables
+  environment.sessionVariables = rec {
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    JAVA_AWT_WM_NONREPARENTING = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    };
+
   # fprintd
   services.fprintd.enable = true;
 

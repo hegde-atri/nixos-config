@@ -20,7 +20,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-      firefox firefox-devedition-bin
+      firefox
       logseq obsidian
       pfetch neofetch
       alacritty
