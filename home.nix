@@ -20,11 +20,16 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-      firefox 
-      logseq 
+      firefox firefox-devedition-bin
+      logseq obsidian
       pfetch neofetch
       alacritty
       btop 
       discord spotify 
-      git gcc _7zz neovim neovide emacs vscode];
+      rustup rust-analyzer go gopls
+      git gcc _7zz neovim neovide emacs vscode
+      wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
+      xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot
+      mako
+      ];
 }
