@@ -23,14 +23,17 @@
       firefox
       logseq obsidian
       pfetch neofetch
+      gtk3
       alacritty
       btop 
       discord spotify 
-      rustup rust-analyzer go gopls
-      git gcc _7zz neovim neovide emacs vscode ripgrep find fd
+      mpv exa yt-dlp ncmpcpp mpd playerctl
+      rustup rust-analyzer go gopls ruby_3_1
+      git gcc _7zz neovim neovide emacs vscode ripgrep fd
+      jetbrains.rider jetbrains.webstorm
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
       xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot
-      libnotify mako brightnessctl
+      libnotify mako brightnessctl hyprpaper
       jetbrains-mono nerdfonts
       ];
 }

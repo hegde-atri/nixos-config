@@ -96,8 +96,32 @@
   users.users.mizuuu = {
     isNormalUser = true;
     description = "Atri Hegde";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "mpd"];
     packages = with pkgs; [];
+  };
+
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    shellAliases = { };
+  };
+
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/mizuuu/Music/mpd";
+    user = "mizuuu";
+    extraConfig = ''
+      audio_output {
+      type "pipewire"
+      name "My PipeWire Output"
+    }
+    '';
+  };
+
+  systemd.services.mpd.environment = {
+    # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+      XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match user
   };
 
   # Session variables
@@ -108,7 +132,7 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     JAVA_AWT_WM_NONREPARENTING = "1";
     MOZ_ENABLE_WAYLAND = "1";
-    };
+  };
 
   # fprintd
   services.fprintd.enable = true;
