@@ -19,5 +19,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ htop neovide ];
+  home.packages = with pkgs; [
+      firefox 
+      logseq 
+      pfetch neofetch
+      alacritty
+      btop 
+      discord spotify 
+      git gcc _7zz neovim neovide emacs vscode];
 }

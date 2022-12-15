@@ -25,7 +25,7 @@
   boot.initrd.luks.devices."luks-a419e6e4-3d3b-45fa-9494-48a1563d1430".device = "/dev/disk/by-uuid/a419e6e4-3d3b-45fa-9494-48a1563d1430";
   boot.initrd.luks.devices."luks-a419e6e4-3d3b-45fa-9494-48a1563d1430".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "alpha"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -57,7 +57,7 @@
   services.xserver.enable = true;
 
   # Enable the Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
@@ -97,16 +97,7 @@
     isNormalUser = true;
     description = "Atri Hegde";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox 
-      neovim 
-      logseq 
-      pfetch neofetch
-      alacritty
-      btop 
-      discord spotify 
-      git gcc _7zz emacs vscode
-    ];
+    packages = with pkgs; [];
   };
 
   # fprintd
@@ -119,7 +110,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    wget
   ];
   services.auto-cpufreq.enable = true;
 
@@ -160,6 +151,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
+  # Overlay for updating discord
   nixpkgs.overlays = [
   	(self: super: {
 		discord = super.discord.overrideAttrs (
