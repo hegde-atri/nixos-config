@@ -30,6 +30,7 @@
       git gcc _7zz neovim neovide emacs vscode
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
       xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot
-      mako
+      libnotify mako
+      JetBrainsMono nerdfonts
       ];
 }
