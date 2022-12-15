@@ -27,10 +27,10 @@
       btop 
       discord spotify 
       rustup rust-analyzer go gopls
-      git gcc _7zz neovim neovide emacs vscode
+      git gcc _7zz neovim neovide emacs vscode ripgrep find fd
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
       xdg-desktop-portal xdg-desktop-portal-wlr grim flameshot
-      libnotify mako
-      JetBrainsMono nerdfonts
+      libnotify mako brightnessctl
+      jetbrains-mono nerdfonts
       ];
 }

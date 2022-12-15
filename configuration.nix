@@ -96,7 +96,7 @@
   users.users.mizuuu = {
     isNormalUser = true;
     description = "Atri Hegde";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "input" ];
     packages = with pkgs; [];
   };
 
