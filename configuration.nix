@@ -106,12 +106,15 @@
     shellAliases = { };
   };
 
-
   services.mpd = {
     enable = true;
-    musicDirectory = "/home/mizuuu/Music/mpd";
     user = "mizuuu";
+    group = "users";
+    dataDir = "/home/mizuuu/Music/mpd";
+    dbFile = "/home/mizuuu/Music/mpd/tag_cache";
+    musicDirectory = "/home/mizuuu/Music/mpd/music";
     extraConfig = ''
+    auto_update "yes"
       audio_output {
       type "pipewire"
       name "My PipeWire Output"
@@ -150,7 +153,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
+    wget ncmpcpp
   ];
   services.auto-cpufreq.enable = true;
 
