@@ -23,7 +23,7 @@
       firefox
       logseq obsidian
       pfetch neofetch
-      gtk3
+      gtk4
       alacritty
       btop 
       discord spotify 
