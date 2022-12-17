@@ -24,11 +24,12 @@
       logseq obsidian
       pfetch neofetch
       gtk4
-      alacritty
+      alacritty trashy
       btop 
       discord spotify 
       mpv mpc-cli exa yt-dlp mpd playerctl puddletag
       rustup rust-analyzer go gopls ruby_3_1
+      nodejs yarn
       git gcc _7zz neovim neovide emacs vscode ripgrep fd
       jetbrains.rider jetbrains.webstorm
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
