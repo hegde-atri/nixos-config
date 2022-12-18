@@ -1,0 +1,22 @@
+#+title: Thinkpad
+#+date: 18/12/2022
+
+* Overview
+My Thinkpad E14 Gen4
+| MAKE | E14 Gen4 |
+| CPU | AMD Ryzen 5626U |
+| RAM | 24GB |
+| SSD | 480GB NVMe |
+
+* Installation
+
+#+begin_src sh
+# TODO
+#+end_src
+
+* Displays
+
+** When connected to external
+workspaces 1-5, on external display
+workspaces 6-0, on built-in display
+
