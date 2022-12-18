@@ -34,7 +34,15 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    hsphfpd.enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -56,10 +64,7 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-  # Enable the Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -75,6 +80,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
+  sound.mediaKeys.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

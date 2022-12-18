@@ -34,7 +34,7 @@
       jetbrains.rider jetbrains.webstorm jetbrains.idea-ultimate
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
       xdg-desktop-portal xdg-desktop-portal-wlr grim sway-contrib.grimshot
-      libnotify mako brightnessctl hyprpaper
-      jetbrains-mono nerdfonts
+      libnotify mako brightnessctl hyprpaper zathura
+      jetbrains-mono nerdfonts noto-fonts noto-fonts-emoji noto-fonts-cjk-sans
       ];
 }
