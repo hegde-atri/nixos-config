@@ -30,7 +30,7 @@
       mpv mpc-cli exa yt-dlp mpd playerctl
       rustup rust-analyzer go gopls ruby_3_1
       nodejs yarn python311
-      git gcc _7zz neovim neovide emacs vscode ripgrep fd tmux
+      git gcc _7zz neovim neovide vscode ripgrep fd tmux
       jetbrains.rider jetbrains.webstorm jetbrains.idea-ultimate
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
       xdg-desktop-portal xdg-desktop-portal-gtk grim sway-contrib.grimshot
