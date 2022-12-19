@@ -114,7 +114,7 @@
 
   services.emacs.enable = true;
   services.emacs.defaultEditor = false;
-  services.emacs.package = pkgs.emacsPgtkGcc;
+  services.emacs.package = pkgs.emacs-gtk;
 
 
   programs.zsh = {
@@ -171,7 +171,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget ncmpcpp
-    emacsPgtkNativeComp
+    emacs-gtk
   ];
   services.auto-cpufreq.enable = true;
 
@@ -226,11 +226,6 @@
 				}; }
 			);
 		})
-    (import (builtins.fetchGit {
-      url = "https://github.com/nix-community/emacs-overlay.git";
-      ref = "master";
-      rev = "bfc8f6edcb7bcf3cf24e4a7199b3f6fed96aaecf";
-    }))
 	];
 
 
