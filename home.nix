@@ -36,5 +36,8 @@
       xdg-desktop-portal grim sway-contrib.grimshot
       libnotify mako brightnessctl hyprpaper
       jetbrains-mono nerdfonts
-      ];
+  ];
+  gtk = {
+    enable = true;
+  };
 }
