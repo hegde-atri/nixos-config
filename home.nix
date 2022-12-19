@@ -33,11 +33,15 @@
       git gcc _7zz neovim neovide emacs vscode ripgrep fd tmux
       jetbrains.rider jetbrains.webstorm jetbrains.idea-ultimate
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
-      xdg-desktop-portal grim sway-contrib.grimshot
+      xdg-desktop-portal xdg-desktop-portal-gtk grim sway-contrib.grimshot
       libnotify mako brightnessctl hyprpaper
       jetbrains-mono nerdfonts
   ];
   gtk = {
     enable = true;
+    theme = {
+      name = "Materia-dark";
+      package = pkgs.materia-theme;
+    };
   };
 }
