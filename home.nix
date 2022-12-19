@@ -26,14 +26,14 @@
       gtk2
       alacritty trashy
       btop libsForQt5.gwenview
-      discord spotify 
-      mpv mpc-cli exa yt-dlp mpd playerctl puddletag
+      discord spotify obs-studio
+      mpv mpc-cli exa yt-dlp mpd playerctl
       rustup rust-analyzer go gopls ruby_3_1
-      nodejs yarn
-      git gcc _7zz neovim neovide emacs vscode ripgrep fd
+      nodejs yarn python311
+      git gcc _7zz neovim neovide emacs vscode ripgrep fd tmux
       jetbrains.rider jetbrains.webstorm jetbrains.idea-ultimate
       wofi waybar eww-wayland slurp wl-clipboard swaylock swayidle
-      xdg-desktop-portal xdg-desktop-portal-wlr grim sway-contrib.grimshot
+      xdg-desktop-portal grim sway-contrib.grimshot
       libnotify mako brightnessctl hyprpaper
       jetbrains-mono nerdfonts
       ];

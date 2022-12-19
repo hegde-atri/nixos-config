@@ -58,8 +58,19 @@
   # services.xserver.enable = true;
 
   # Enable the Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.xfce.enable = true;
+  xdg.portal.wlr.enable = true;
+  xdg.portal.wlr.settings = {
+    screencast = {
+      output_name = "HDMI-A-1";
+      max_fps = 30;
+      # exec_before = "disable_notifications.sh";
+      # exec_after = "enable_notifications.sh";
+      chooser_type = "simple";
+      chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+    };
+  };
 
   # Configure keymap in X11
   services.xserver = {
