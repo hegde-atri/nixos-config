@@ -109,6 +109,7 @@
     foot
     wofi
     eww
+    libgnome-keyring
   ];
 
   fonts.fonts = with pkgs; [
