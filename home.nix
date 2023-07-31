@@ -11,10 +11,13 @@
   home.packages = with pkgs; [
     firefox
     pfetch
+    carapace
     btop
     discord
     sqlite
     starship
+    neofetch
+    android-studio
     cmake
     ledger
     libgccjit
@@ -35,10 +38,16 @@
     neovim
     ripgrep
     fd
+    mpd
     brightnessctl
     nerdfonts
+    gnumake
+    (ncmpcpp.override { visualizerSupport = true; })
+    mpc-cli
     jetbrains-mono
   ];
+  programs.nushell.enable = true;
+  fonts.fontconfig.enable = true;
 
   gtk = {
     enable = true;

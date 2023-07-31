@@ -64,11 +64,12 @@
     isNormalUser = true;
     home = "/home/mizuuu";
     initialPassword = "password";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
     ];
+    shell = pkgs.nushell;
   };
-
+  environment.binsh = "${pkgs.dash}/bin/dash";
 
   services.emacs = {
     enable = true;
@@ -76,8 +77,21 @@
     defaultEditor = true;
   };
 
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+
+  programs.waybar = {
+    enable = true;
+    package = pkgs.waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    });
+  };
+
+
   environment.systemPackages = with pkgs; [
+    libtool
     vim
+    virt-manager
     wget
     nushell
     pfetch
@@ -97,6 +111,7 @@
     eww
   ];
 
+  services.auto-cpufreq.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
@@ -104,8 +119,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
