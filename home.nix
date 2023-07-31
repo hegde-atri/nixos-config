@@ -26,8 +26,8 @@
     gopls
     gore
     gotools
-    iosevka
-    overpass
+    wl-clipboard
+    wayland-protocols
     gotests
     zoxide
     foot
@@ -40,13 +40,14 @@
     fd
     mpd
     brightnessctl
-    nerdfonts
     gnumake
     (ncmpcpp.override { visualizerSupport = true; })
     mpc-cli
-    jetbrains-mono
+    playerctl
+    python3
   ];
   programs.nushell.enable = true;
+
   fonts.fontconfig.enable = true;
 
   gtk = {
@@ -58,6 +59,20 @@
     theme = {
       name = "Materia-dark";
       package = pkgs.materia-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
     };
   };
 

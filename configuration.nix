@@ -80,13 +80,13 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    });
-  };
-
+  nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    })
+  ];
 
   environment.systemPackages = with pkgs; [
     libtool
@@ -111,6 +111,17 @@
     eww
   ];
 
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    overpass
+    iosevka
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    jetbrains-mono
+    font-awesome
+  ];
   services.auto-cpufreq.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
