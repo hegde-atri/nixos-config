@@ -13,6 +13,7 @@
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "pathos"; # Define your hostname.
@@ -109,10 +110,10 @@
     foot
     wofi
     eww
-    libgnome-keyring
+    pinentry
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -129,12 +130,15 @@
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
+    pinentryFlavor = "gtk2";
     enableSSHSupport = true;
   };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
