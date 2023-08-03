@@ -13,6 +13,7 @@
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "pathos"; # Define your hostname.
@@ -109,31 +110,47 @@
     foot
     wofi
     eww
+    pinentry
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.enableFontDir = true;
+  fonts.fontDir.enable = true;
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     liberation_ttf
     overpass
     iosevka
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerdfonts
     jetbrains-mono
     font-awesome
   ];
   services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+    battery = {
+      governor = "powersave";
+      turbo = "auto";
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
+    pinentryFlavor = "gtk2";
     enableSSHSupport = true;
   };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
