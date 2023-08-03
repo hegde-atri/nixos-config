@@ -113,6 +113,8 @@
     pinentry
   ];
 
+  fonts.enableFontDir = true;
+  fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -120,11 +122,21 @@
     liberation_ttf
     overpass
     iosevka
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerdfonts
     jetbrains-mono
     font-awesome
   ];
   services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+    battery = {
+      governor = "powersave";
+      turbo = "auto";
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;

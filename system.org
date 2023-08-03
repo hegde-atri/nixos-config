@@ -1,0 +1,15 @@
+#+title: System
+#+author: Atri Hegde
+#+auto_tangle: t
+
+* Prelude
+
+* Table of Contents :TOC:
+- [[#prelude][Prelude]]
+- [[#garbage-collection][Garbage collection]]
+- [[#home][Home]]
+
+* Garbage collection
+
+
+* Home
