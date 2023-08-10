@@ -1,15 +1,228 @@
 #+title: System
 #+author: Atri Hegde
-#+auto_tangle: t
 
 * Prelude
+#+begin_src nix :tangle configuration.nix
+{ config, lib, pkgs, ... }:
+{
+#+end_src
 
 * Table of Contents :TOC:
 - [[#prelude][Prelude]]
+- [[#imports][Imports]]
+- [[#system][System]]
+  - [[#bootloader][Bootloader]]
+  - [[#hostname][Hostname]]
+  - [[#networking][Networking]]
 - [[#garbage-collection][Garbage collection]]
-- [[#home][Home]]
+- [[#fonts][Fonts]]
+- [[#system-level-packages][System level packages]]
+  - [[#overlays][Overlays]]
+- [[#power-management][Power management]]
+- [[#sound][Sound]]
+- [[#hyprland][Hyprland]]
+- [[#user-customisation][User customisation]]
+  - [[#user][User]]
+  - [[#steam][Steam]]
+  - [[#locale][Locale]]
+  - [[#printing][Printing]]
+  - [[#virtualisation][Virtualisation]]
+  - [[#dash][Dash]]
+  - [[#ssh][SSH]]
+  - [[#gnupg][GnuPG]]
+- [[#end][End]]
+
+* Imports
+#+begin_src nix :tangle configuration.nix
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+#+end_src
+
+* System
+
+** Bootloader
+
+#+begin_src nix :tangle configuration.nix
+  nixpkgs.config.allowUnfree = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.efi.canTouchEfiVariables = true;
+#+end_src
+
+** Hostname
+#+begin_src nix :tangle configuration.nix
+  networking.hostName = "pathos";
+#+end_src
+
+** Networking
+#+begin_src nix :tangle configuration.nix
+  networking.networkmanager.enable = true;
+#+end_src
 
 * Garbage collection
+#+begin_src nix :tangle configuration.nix
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+#+end_src
 
+* Fonts
+#+begin_src nix :tangle configuration.nix
+  fonts.fontDir.enable = true;
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    overpass
+    iosevka
+    nerdfonts
+    jetbrains-mono
+    font-awesome
+  ];
+#+end_src
 
-* Home
+* System level packages
+#+begin_src nix :tangle configuration.nix
+  environment.systemPackages = with pkgs; [
+    libtool
+    vim
+    virt-manager
+    direnv
+    wget
+    nushell
+    pfetch
+    neovim
+    emacs
+    firefox
+    spotify
+    git
+    exa
+    waybar
+    libnotify
+    mako
+    swww
+    kitty
+    foot
+    wofi
+    eww
+    pinentry
+    # idk why but here we are
+    liberation_ttf
+  ];
+#+end_src
+
+** Overlays
+*** waybar
+#+begin_src nix :tangle configuration.nix
+  nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    })
+  ];
+#+end_src
+
+* Power management
+#+begin_src nix :tangle configuration.nix
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+    battery = {
+      governor = "powersave";
+      turbo = "auto";
+    };
+  };
+#+end_src
+
+* Sound
+#+begin_src nix :tangle configuration.nix
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+#+end_src
+
+* Hyprland
+I choose hyprland as my window manager. It's the only window manager I've tried on wayland, and so far am delighted to use it. We also configure the hyprland xdg portal here.
+
+#+begin_src nix :tangle configuration.nix
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+#+end_src
+
+* User customisation
+** User
+#+begin_src nix :tangle configuration.nix
+  users.users.mizuuu = {
+    isNormalUser = true;
+    home = "/home/mizuuu";
+    initialPassword = "password";
+    extraGroups = [ "wheel" "libvirtd" ];
+    shell = pkgs.nushell;
+  };
+  # support opengl 32-bit
+  hardware.opengl.driSupport32Bit = true;
+#+end_src
+
+** Steam
+#+begin_src nix :tangle configuration.nix
+  programs.steam.enable = true;
+#+end_src
+
+** Locale
+#+begin_src nix :tangle configuration.nix
+  time.timeZone = "Europe/London";
+  i18n.defaultLocale = "en_GB.UTF-8";
+#+end_src
+
+** Printing
+#+begin_src nix :tangle configuration.nix
+  services.printing.enable = true;
+#+end_src
+
+** Virtualisation
+#+begin_src nix :tangle configuration.nix
+  virtualisation.libvirtd.enable = true;
+#+end_src
+
+** Dash
+#+begin_src nix :tangle configuration.nix
+  environment.binsh = "${pkgs.dash}/bin/dash";
+#+end_src
+
+** SSH
+#+begin_src nix :tangle configuration.nix
+  services.openssh.enable = true;
+#+end_src
+
+** GnuPG
+#+begin_src nix :tangle configuration.nix
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSSHSupport = true;
+  };
+#+end_src
+
+* End
+
+#+begin_src nix :tangle configuration.nix
+  system.stateVersion = "23.11";
+}
+#+end_src

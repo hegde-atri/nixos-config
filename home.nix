@@ -8,6 +8,24 @@
 
   programs.home-manager.enable = true;
 
+  home = {
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      SDL_VIDEODRIVER = "wayland";
+      QT_QPA_PLATFORM = "wayland";
+      GDK_BACKEND = "wayland,x11";
+      _JAVA_AWT_WM_NONREPARENTING = 1;
+      _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
+      # only needed for Sway
+      XDG_CURRENT_DESKTOP = "sway";
+    };
+  };
+
+  # home.shellAliases
+  # home.sessionPath
+  # wayland.windowManager.hyprland.enable
+  # programs.direnv.enableNushellIntegration
+
   home.packages = with pkgs; [
     firefox
     pfetch
@@ -33,6 +51,7 @@
     foot
     rustup
     mpv
+    nodejs_20
     git
     _7zz
     neovim
@@ -47,6 +66,12 @@
     python3
   ];
   programs.nushell.enable = true;
+
+  home.pointerCursor = {
+    name = "Capitaine Cursors";
+    package = pkgs.capitaine-cursors;
+    gtk.enable = true;
+  };
 
   gtk = {
     enable = true;
