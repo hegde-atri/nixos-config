@@ -14,6 +14,7 @@
   - [[#bootloader][Bootloader]]
   - [[#hostname][Hostname]]
   - [[#networking][Networking]]
+  - [[#nix-flakes][Nix flakes]]
 - [[#garbage-collection][Garbage collection]]
 - [[#fonts][Fonts]]
 - [[#system-level-packages][System level packages]]
@@ -59,6 +60,16 @@
 ** Networking
 #+begin_src nix :tangle configuration.nix
   networking.networkmanager.enable = true;
+#+end_src
+
+** Nix flakes
+#+begin_src nix :tangle configuration.nix
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 #+end_src
 
 * Garbage collection

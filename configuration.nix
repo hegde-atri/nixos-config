@@ -15,6 +15,13 @@
 
   networking.networkmanager.enable = true;
 
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
 

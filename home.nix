@@ -40,6 +40,9 @@
     ledger
     libgccjit
     llvmPackages_rocm.clang
+    yt-dlp
+    alsa-utils
+    obs-studio
     go
     gopls
     gore
