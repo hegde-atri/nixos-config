@@ -1,11 +1,40 @@
+#+title: Home-manager configuration
+#+author: Atri Hegde
+#+auto_tangle: t
+#+property: header-args :tangle home.nix
+
+* TOC :TOC:
+- [[#preface][Preface]]
+  - [[#todo][TODO]]
+- [[#user-setup][User setup]]
+- [[#environment-variables][Environment variables]]
+- [[#packages][Packages]]
+- [[#programs-and-services][Programs and Services]]
+  - [[#shell][Shell]]
+  - [[#terminal-emulator][Terminal Emulator]]
+  - [[#multimedia][Multimedia]]
+- [[#theme-settings][Theme settings]]
+  - [[#cursor][Cursor]]
+  - [[#gtk][GTK]]
+- [[#end][End]]
+
+* Preface
+** TODO
+#+begin_src nix
 {config, pkgs, ...}:
 {
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
+#+end_src
 
+* User setup
+#+begin_src nix
   home.username = "mizuuu";
   home.homeDirectory = "/home/mizuuu";
+#+end_src
 
+* Environment variables
+#+begin_src nix
   home = {
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
@@ -18,7 +47,10 @@
       XDG_CURRENT_DESKTOP = "sway";
     };
   };
+#+end_src
 
+* Packages
+#+begin_src nix
   home.packages = with pkgs; [
     firefox
     pfetch
@@ -58,7 +90,20 @@
     python3
     joshuto
   ];
+#+end_src
 
+* Programs and Services
+** Shell
+*** Nushell
+I primarily use NuShell due to its snappiness.
+
+| Shell   | Time taken (10 launches) |
+|---------+--------------------------|
+| NuShell | ~0.01s                   |
+| Bash    | ~0.13s                   |
+| ZSH     | ~0.65s                   |
+
+#+begin_src nix
   programs.nushell = {
     enable = true;
     extraConfig = ''
@@ -131,7 +176,13 @@
       getMusic = "echo 'TODO'";
     };
   };
+#+end_src
 
+*** Zoxide and Direnv
+Zoxide is a smarter better ~cd~.
+Direnv helps me with my dev environments.
+
+#+begin_src nix
   programs.zoxide = {
     enable = true;
     package = pkgs.zoxide;
@@ -143,7 +194,10 @@
     enableBashIntegration = true;
     enableNushellIntegration = true;
   };
+#+end_src
 
+** Terminal Emulator
+#+begin_src nix
   programs.foot = {
     enable = true;
     package = pkgs.foot;
@@ -186,7 +240,12 @@
       };
     };
   };
+#+end_src
 
+*** Starship and Exa
+Starship gives me a fancy prompt.
+Exa gives me a icons and a better experience with ~ls~.
+#+begin_src nix
   programs.starship = {
     enable = true;
     package = pkgs.starship;
@@ -200,7 +259,11 @@
     enableAliases = true;
     icons = true;
   };
+#+end_src
 
+** Multimedia
+*** MPV
+#+begin_src nix
 programs.mpv = {
   enable = true;
   package = pkgs.wrapMpv (pkgs.mpv-unwrapped.override { vapoursynthSupport = true; }) { youtubeSupport = true; };
@@ -211,7 +274,10 @@ programs.mpv = {
     cache-default = 4000000;
   };
 };
+#+end_src
 
+*** MPD
+#+begin_src nix
   services.mpd = {
     enable = true;
     package = pkgs.mpd;
@@ -241,7 +307,10 @@ programs.mpv = {
     musicDirectory = "~/Music/music";
     # playlistDirectory = "~/Music/playlists";
   };
+#+end_src
 
+**** Discord RPC for MPD
+#+begin_src nix
   services.mpd-discord-rpc = {
     enable = true;
     package = pkgs.mpd-discord-rpc;
@@ -254,19 +323,30 @@ programs.mpv = {
       };
     };
   };
+#+end_src
 
+
+*** NCMPCPP
+#+begin_src nix
   programs.ncmpcpp = {
     enable = true;
     package = (pkgs.ncmpcpp.override {visualizerSupport = true;});
     mpdMusicDir = "~/Music/music";
   };
+#+end_src
 
+* Theme settings
+** Cursor
+#+begin_src nix
   home.pointerCursor = {
     name = "Capitaine Cursors";
     package = pkgs.capitaine-cursors;
     gtk.enable = true;
   };
+#+end_src
 
+** GTK
+#+begin_src nix
   gtk = {
     enable = true;
     cursorTheme = {
@@ -292,5 +372,9 @@ programs.mpv = {
       '';
     };
   };
+#+end_src
 
+* End
+#+begin_src nix
 }
+#+end_src
