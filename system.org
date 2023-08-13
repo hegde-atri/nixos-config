@@ -1,5 +1,6 @@
 #+title: System
 #+author: Atri Hegde
+#+auto_tangle: t
 
 * Prelude
 #+begin_src nix :tangle configuration.nix
@@ -12,6 +13,7 @@
 - [[#imports][Imports]]
 - [[#system][System]]
   - [[#bootloader][Bootloader]]
+  - [[#kernel-options][Kernel options]]
   - [[#hostname][Hostname]]
   - [[#networking][Networking]]
   - [[#nix-flakes][Nix flakes]]
@@ -50,6 +52,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
+#+end_src
+
+** Kernel options
+#+begin_src nix :tangle configuration.nix
+  boot.initrd.kernelModules = [ "amdgpu" "v4l2loopback"];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback.out
+  ];
 #+end_src
 
 ** Hostname
@@ -109,7 +119,6 @@
     firefox
     spotify
     git
-    exa
     waybar
     libnotify
     mako

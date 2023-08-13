@@ -11,6 +11,11 @@
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.initrd.kernelModules = [ "amdgpu" "v4l2loopback"];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback.out
+  ];
+
   networking.hostName = "pathos";
 
   networking.networkmanager.enable = true;
@@ -51,7 +56,6 @@
     firefox
     spotify
     git
-    exa
     waybar
     libnotify
     mako

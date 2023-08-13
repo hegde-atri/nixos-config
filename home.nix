@@ -33,7 +33,6 @@
     btop
     discord
     sqlite
-    starship
     neofetch
     android-studio
     cmake
@@ -50,8 +49,6 @@
     wl-clipboard
     wayland-protocols
     gotests
-    zoxide
-    foot
     rustup
     mpv
     nodejs_20
@@ -60,15 +57,208 @@
     neovim
     ripgrep
     fd
-    mpd
     brightnessctl
     gnumake
-    (ncmpcpp.override { visualizerSupport = true; })
+    # (ncmpcpp.override { visualizerSupport = true; })
     mpc-cli
     playerctl
     python3
+    joshuto
   ];
-  programs.nushell.enable = true;
+
+  programs.nushell = {
+    enable = true;
+    extraConfig = ''
+    # Completion using carapace
+    $env.PATH = ($env.PATH | prepend "/home/mizuuu/.config/carapace/bin")
+
+    let carapace_completer = {|spans|
+      carapace $spans.0 nushell $spans | from json
+    }
+    '';
+    extraEnv = ''
+      $env.LANG = "en_GB.UTF-8"
+      # Add cargo to path
+      $env.PATH = ($env.PATH | append "~/.cargo/bin")
+      # Add local bin to path
+      $env.PATH = ($env.PATH | append "~/.local/bin" | append "~/.local/bin/custom")
+      # Add doom emacs to path
+      $env.PATH = ($env.PATH | append "~/.config/emacs/bin")
+      # $env.PATH = ($env.PATH | append "~/.emacs.d/bin")
+      # Add go binaries to path
+      $env.PATH = ($env.PATH | append "/home/mizuuu/go/bin")
+    '';
+    shellAliases = {
+      l = "exa --icons -l";
+      ls = "exa --icons";
+      ll = "exa --icons -l";
+      la = "exa --icons -a";
+      lla = "exa --icons -la";
+      lt = "exa --icons -T";
+      lta = "exa --icons -Ta";
+      pi = "ssh pi";
+      lf = "joshuto";
+      # -- Git Alias --
+      gs = "git status";
+      ga = "git add .";
+      gaa = "git add -A .";
+      gc = "git commit -m";
+      gb = "git branch";
+      gsb = "git checkout -b";
+      grc = "git rebase --continue";
+      gp = "git push";
+      git-add-origin = "git remote set-url --add origin";
+      bluetooth = "sudo rc-service bluetoothd start";
+      vpn = "nmcli connection up thinkpad";
+      clip = "wl-copy";
+      presentmd = "npx @marp-team/marp-cli@^2 --bespoke.transition --preview";
+      present-compilePDF = "marp --pdf --allow-local-files";
+      ytmp3 = "yt-dlp -f 'ba' -x --audio-format mp3 -o '%(title)s.%(ext)s' --embed-thumbnail --parse-metadata 'title:%(artist)s - %(title)s'";
+      ytmp3-chapters = "yt-dlp -f 'ba' -x --audio-format mp3 -o '%(title)s.%(ext)s' --embed-thumbnail --parse-metadata 'title:%(artist)s - %(title)s' --split-chapters  -o 'chapter:%(title)s/[%(section_number)s] - %(section_title)s.%(ext)s'";
+      ytmp4 = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(title)s.%(ext)s'";
+      ytmp4-chapters = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(title)s.%(ext)s' --split-chapters  -o 'chapter:%(title)s/[%(section_number)s] - %(section_title)s.%(ext)s'";
+      hpAdapter = "pactl set-default-sink alsa_output.usb-0c76_USB_PnP_Audio_Device-00.analog-stereo";
+      startnetwork = "sudo virsh net-start default";
+      bsh = "nvim ~/.bashrc";
+      zshrc = "nvim ~/.zshrc";
+      clearzsh = "rm -rf .zsh_history";
+      hypr = "vim ~/.config/hypr/hyprland.conf";
+      # alias cd='echo "Nick is coolest"'
+      icat = "kitty +kitten icat";
+      logseq = "logseq --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      nvim = "emacsclient -nc";
+      vim = "emacsclient -nw";
+      vv = "emacsclient -nw";
+      neovide = "WINIT_UNIX_BACKEND=x11 neovide";
+      cd = "z";
+      pp = "ncmpcpp";
+      zz = "zathura";
+      repo = "repoman";
+      sendMusic = "rsync -avP ~/Music pi:~/";
+      getMusic = "echo 'TODO'";
+    };
+    extraLogin = ''
+      pfetch
+    '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    package = pkgs.zoxide;
+    enableNushellIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.foot = {
+    enable = true;
+    package = pkgs.foot;
+    server.enable = true;
+    settings = {
+      main = {
+        app-id = "foot";
+        title = "foot";
+        font = "JetBrainsMono Nerd Font:size=8";
+        dpi-aware = "yes";
+        pad = "10x10 center";
+      };
+      cursor = {
+        style = "beam";
+        blink = "yes";
+      };
+      colors = {
+        alpha = "0.9";
+        background = "14151b";
+        foreground = "f8f8f2";
+        regular0 = "21222c";
+        regular1 = "ff5555";
+        regular2 = "50fa7b";
+        regular3 = "f1fa8c";
+        regular4 = "bd93f9";
+        regular5 = "ff79c6";
+        regular6 = "8be9fd";
+        regular7 = "f8f8f2";
+        bright0 = "6272a4";
+        bright1 = "ff6e6e";
+        bright2 = "69ff94";
+        bright3 = "ffffa5";
+        bright4 = "d6acff";
+        bright5 = "ff92df";
+        bright6 = "a4ffff";
+        bright7 = "ffffff";
+        selection-foreground="ffffff";
+        selection-background="44475a";
+        urls = "8be9fd";
+      };
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    package = pkgs.starship;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.exa = {
+    enable = true;
+    package = pkgs.exa;
+    enableAliases = true;
+    icons = true;
+  };
+
+  services.mpd = {
+    enable = true;
+    package = pkgs.mpd;
+    extraConfig = ''
+      db_file "~/Music/tag_cache"
+      log_file "syslog"
+      music_directory "~/Music/music"
+      playlist_directory "~/Music/playlists"
+      pid_file "~/Music/pid"
+      state_file "~/Music/state"
+      sticker_file "~/Music/sticker.sql"
+
+      audio_output {
+        type            "pipewire"
+        name            "PipeWire Sound Server"
+      }
+
+      audio_output {
+        type                    "fifo"
+        name                    "my_fifo"
+        path                    "/tmp/mpd.fifo"
+        format                  "44100:16:2"
+      }
+      '';
+    # dataDir = "~/Music";
+    # dbFile = "~/Music/tag_cache";
+    musicDirectory = "~/Music/music";
+    # playlistDirectory = "~/Music/playlists";
+  };
+
+  services.mpd-discord-rpc = {
+    enable = true;
+    package = pkgs.mpd-discord-rpc;
+    settings = {
+      id = 677226551607033903;
+      hosts = ["localhost:6600"];
+      format = {
+        details = "$title";
+        state = "$artist / $album";
+      };
+    };
+  };
+
+  programs.ncmpcpp = {
+    enable = true;
+    package = (pkgs.ncmpcpp.override {visualizerSupport = true;});
+    mpdMusicDir = "~/Music/music";
+  };
 
   home.pointerCursor = {
     name = "Capitaine Cursors";
