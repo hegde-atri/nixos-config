@@ -5,7 +5,7 @@
 
 > **Disclaimer**: My private configuration is an ongoing experiment to test NixOS as my daily driver.
 
-Writing a literate config at `system.org`.
+Writing a literate config at [system.org](./system.org) and [home.org](./home.org).
 
 ---
 
