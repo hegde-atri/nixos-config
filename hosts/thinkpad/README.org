@@ -1,0 +1,9 @@
+#+title: Home
+#+author: Atri Hegde
+#+auto_tangle: t
+
+* Modules
+
+#+begin_src nix :tangle default.nix
+
+#+end_src

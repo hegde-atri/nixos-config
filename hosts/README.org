@@ -1,0 +1,14 @@
+#+title: Hosts
+#+author: Atri Hegde
+
+* Hosts
+
+I have all the apps I want preconfigured as a module which I can enable or disable on each host.
+
+** Pathos
+|         |                   |
+|---------+-------------------|
+| Machine | Thinkpad E14 Gen4 |
+| CPU     | Ryzen 5 5625U     |
+| Memory  | 24GB              |
+| SDD     | 512GB             |
