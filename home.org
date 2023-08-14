@@ -77,6 +77,7 @@
     ripgrep
     fd
     brightnessctl
+    nushell
     gnumake
     # (ncmpcpp.override { visualizerSupport = true; })
     mpc-cli
@@ -105,17 +106,13 @@ I primarily use NuShell due to its snappiness.
 
 Configuration file must be copied over from the ~config~ folder.
 
+I have included it in home packages since config files conflict otherwise.
+
 | Shell   | Time taken (10 launches) |
 |---------+--------------------------|
 | NuShell | ~0.01s                   |
 | Bash    | ~0.13s                   |
 | ZSH     | ~0.65s                   |
-
-#+begin_src nix
-programs.nushell = {
-  enable = true;
-};
-#+end_src
 
 *** Zoxide and Direnv
 Zoxide is a smarter better ~cd~.

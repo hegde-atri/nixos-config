@@ -87,14 +87,14 @@ let dark_theme = {
 }
 
 # Completion using carapace
-let-env PATH = ($env.PATH | prepend "/home/mizuuu/.config/carapace/bin")
+$env.PATH = ($env.PATH | prepend "/home/mizuuu/.config/carapace/bin")
 
 let carapace_completer = {|spans|
   carapace $spans.0 nushell $spans | from json
 }
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   ls: {
     use_ls_colors: true # use the LS_COLORS environment variable to colorize output
     clickable_links: true # enable or disable clickable links. Your terminal has to support links.
@@ -455,10 +455,10 @@ source ~/.cache/starship/init.nu
 # Zoxide
 source ~/.zoxide.nu
 # PNPM
-# let-env PNPM_HOME = $"($env.HOME)/Library/pnpm"
-# let-env PATH = ($env.PATH | append $env.PNPM_HOME)
+# $env.PNPM_HOME = $"($env.HOME)/Library/pnpm"
+# $env.PATH = ($env.PATH | append $env.PNPM_HOME)
 source ~/.config/nushell/scripts/paste_image.nu
-source ~/.config/nushell/scripts/secrets.nu
+# source ~/.config/nushell/scripts/secrets.nu
 
 alias l = exa --icons -l
 alias ls = exa --icons
@@ -528,4 +528,4 @@ alias repo = repoman
 alias sendMusic = rsync -avP ~/Music pi:~/
 alias getMusic = rsync -avP pi:~/Music ~
 
-rxfetch
+pfetch

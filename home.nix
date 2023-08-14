@@ -45,6 +45,7 @@
     ripgrep
     fd
     brightnessctl
+    nushell
     gnumake
     # (ncmpcpp.override { visualizerSupport = true; })
     mpc-cli
@@ -64,10 +65,6 @@
     joshuto
     # Fonts
   ];
-
-programs.nushell = {
-  enable = true;
-};
 
   programs.zoxide = {
     enable = true;
