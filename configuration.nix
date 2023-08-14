@@ -56,6 +56,7 @@
     firefox
     spotify
     git
+    exa
     waybar
     libnotify
     mako
@@ -111,7 +112,6 @@
     home = "/home/mizuuu";
     initialPassword = "password";
     extraGroups = [ "wheel" "libvirtd" ];
-    shell = pkgs.nushell;
   };
   # support opengl 32-bit
   hardware.opengl.driSupport32Bit = true;

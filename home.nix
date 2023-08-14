@@ -29,6 +29,9 @@
     glib
     neofetch
     android-studio
+    swappy
+    grim
+    sway-contrib.grimshot
     cmake
     ledger
     libgccjit
@@ -37,6 +40,7 @@
     alsa-utils
     obs-studio
     wl-clipboard
+    swaylock
     wayland-protocols
     gotests
     git
@@ -45,7 +49,7 @@
     ripgrep
     fd
     brightnessctl
-    nushell
+    slurp
     gnumake
     # (ncmpcpp.override { visualizerSupport = true; })
     mpc-cli
@@ -84,6 +88,7 @@
     server.enable = true;
     settings = {
       main = {
+        shell = "/run/current-system/sw/bin/nu";
         app-id = "foot";
         title = "foot";
         font = "JetBrainsMono Nerd Font:size=8";

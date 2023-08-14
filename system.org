@@ -112,13 +112,14 @@
     virt-manager
     direnv
     wget
-    nushell
     pfetch
+    nushell
     neovim
     emacs
     firefox
     spotify
     git
+    exa
     waybar
     libnotify
     mako
@@ -193,7 +194,6 @@ I choose hyprland as my window manager. It's the only window manager I've tried 
     home = "/home/mizuuu";
     initialPassword = "password";
     extraGroups = [ "wheel" "libvirtd" ];
-    shell = pkgs.nushell;
   };
   # support opengl 32-bit
   hardware.opengl.driSupport32Bit = true;
