@@ -1,0 +1,8 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Atri Hegde
+	email = iamatrihegde@outlook.com
+	signingkey = 0DB99C10334E736E
+[commit]
+	gpgsign = true

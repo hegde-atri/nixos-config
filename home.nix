@@ -36,15 +36,9 @@
     yt-dlp
     alsa-utils
     obs-studio
-    go
-    gopls
-    gore
-    gotools
     wl-clipboard
     wayland-protocols
     gotests
-    rustup
-    nodejs_20
     git
     _7zz
     neovim
@@ -55,82 +49,25 @@
     # (ncmpcpp.override { visualizerSupport = true; })
     mpc-cli
     playerctl
+    ## Dev languages
+    # Golang
+    go
+    gopls
+    gore
+    gotools
+    # Rust
+    rustup
+    # Node
+    nodejs_20
+    # Python
     python3
     joshuto
+    # Fonts
   ];
 
-  programs.nushell = {
-    enable = true;
-    extraConfig = ''
-    # Completion using carapace
-    $env.PATH = ($env.PATH | prepend "/home/mizuuu/.config/carapace/bin")
-
-    let carapace_completer = {|spans|
-      carapace $spans.0 nushell $spans | from json
-    }
-    '';
-    extraEnv = ''
-      $env.LANG = "en_GB.UTF-8"
-      # Add cargo to path
-      $env.PATH = ($env.PATH | append "~/.cargo/bin")
-      # Add local bin to path
-      $env.PATH = ($env.PATH | append "~/.local/bin" | append "~/.local/bin/custom")
-      # Add doom emacs to path
-      $env.PATH = ($env.PATH | append "~/.config/emacs/bin")
-      # $env.PATH = ($env.PATH | append "~/.emacs.d/bin")
-      # Add go binaries to path
-      $env.PATH = ($env.PATH | append "/home/mizuuu/go/bin")
-    '';
-    shellAliases = {
-      l = "exa --icons -l";
-      ls = "exa --icons";
-      ll = "exa --icons -l";
-      la = "exa --icons -a";
-      lla = "exa --icons -la";
-      lt = "exa --icons -T";
-      lta = "exa --icons -Ta";
-      pi = "ssh pi";
-      lf = "joshuto";
-      # -- Git Alias --
-      gs = "git status";
-      ga = "git add .";
-      gaa = "git add -A .";
-      gc = "git commit -m";
-      gb = "git branch";
-      gsb = "git checkout -b";
-      grc = "git rebase --continue";
-      gp = "git push";
-      git-add-origin = "git remote set-url --add origin";
-      bluetooth = "sudo rc-service bluetoothd start";
-      vpn = "nmcli connection up thinkpad";
-      clip = "wl-copy";
-      presentmd = "npx @marp-team/marp-cli@^2 --bespoke.transition --preview";
-      present-compilePDF = "marp --pdf --allow-local-files";
-      ytmp3 = "yt-dlp -f 'ba' -x --audio-format mp3 -o '%(title)s.%(ext)s' --embed-thumbnail --parse-metadata 'title:%(artist)s - %(title)s'";
-      ytmp3-chapters = "yt-dlp -f 'ba' -x --audio-format mp3 -o '%(title)s.%(ext)s' --embed-thumbnail --parse-metadata 'title:%(artist)s - %(title)s' --split-chapters  -o 'chapter:%(title)s/[%(section_number)s] - %(section_title)s.%(ext)s'";
-      ytmp4 = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(title)s.%(ext)s'";
-      ytmp4-chapters = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(title)s.%(ext)s' --split-chapters  -o 'chapter:%(title)s/[%(section_number)s] - %(section_title)s.%(ext)s'";
-      hpAdapter = "pactl set-default-sink alsa_output.usb-0c76_USB_PnP_Audio_Device-00.analog-stereo";
-      startnetwork = "sudo virsh net-start default";
-      bsh = "nvim ~/.bashrc";
-      zshrc = "nvim ~/.zshrc";
-      clearzsh = "rm -rf .zsh_history";
-      hypr = "vim ~/.config/hypr/hyprland.conf";
-      # alias cd='echo "Nick is coolest"'
-      icat = "kitty +kitten icat";
-      logseq = "logseq --enable-features=UseOzonePlatform --ozone-platform=wayland";
-      nvim = "emacsclient -nc";
-      vim = "emacsclient -nw";
-      vv = "emacsclient -nw";
-      neovide = "WINIT_UNIX_BACKEND=x11 neovide";
-      cd = "z";
-      pp = "ncmpcpp";
-      zz = "zathura";
-      repo = "repoman";
-      sendMusic = "rsync -avP ~/Music pi:~/";
-      getMusic = "echo 'TODO'";
-    };
-  };
+programs.nushell = {
+  enable = true;
+};
 
   programs.zoxide = {
     enable = true;

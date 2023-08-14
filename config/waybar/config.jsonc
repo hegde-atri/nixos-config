@@ -1,0 +1,141 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": ["wlr/workspaces"],
+    "modules-right": ["mpd", "pulseaudio", "network", "memory", "temperature", "backlight", "battery", "clock", "tray"],
+
+     "wlr/workspaces": {
+         "on-click": "activate",
+         "on-scroll-up": "hyprctl dispatch workspace e+1",
+         "on-scroll-down": "hyprctl dispatch workspace e-1",
+         "disable-scroll": true,
+         "all-outputs": true,
+         "active-only": false,
+         "format": "{icon}",
+         "format-icons": {
+             "default": "",
+             "urgent": "",
+             "active": "",
+         },
+         "sort-by-number": true,
+     },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 1,
+        "format": " {:%H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": " LOAD: {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": " {used:0.1f}G"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+    "interval": 60,
+    "full-at": 80,
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󱐌 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-full": "{icon} Full",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "mpd": {
+        "interval": 2,
+        "unknown-tag": "N/A",
+
+        "format": "{stateIcon} {artist} - {title}",
+        "format-disconnected": " Disconnected",
+        "format-paused": "{stateIcon} {artist} - {title}",
+        "format-stopped": "Stopped ",
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "mpc toggle",
+        "on-click-middle": "mpc prev",
+        "on-click-right": "mpc next",
+        "on-update": "",
+        "on-scroll-up": "mpc seek +00:00:01",
+        "on-scroll-down": "mpc seek -00:00:01",
+        "smooth-scrolling-threshold": 1,
+    },
+    "network": {
+        "interval": 5,
+        //"interface": "wlan*", // (Optional) To force the use of this interface, set it for netspeed to work
+        "format-wifi": " {essid}",
+        // "format-ethernet": " {ipaddr}/{cidr}",
+        "format-ethernet": " {ipaddr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "睊 Disconnected",
+        "format-disabled": "睊 Disabled",
+        "format-alt": " {bandwidthUpBits} |  {bandwidthDownBits}",
+        "tooltip-format": "  {ifname} via {gwaddr}",
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "MUTED {icon} {format_source}",
+        "format-muted": "MUTED",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/spotify": {
+        "format": " {}",
+        "escape": true,
+        "return-type": "json",
+        // "max-length": 25,
+        // "interval": 30, // Remove this if your script is endless and write in loop
+        "on-click": "playerctl -p spotify play-pause",
+        "on-click-right": "killall spotify",
+        //"smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+        "on-scroll-up" : "playerctl -p spotify next",
+        "on-scroll-down" : "playerctl -p spotify previous",
+        "exec": "~/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+        "exec-if": "pgrep spotify"
+    },
+    "custom/weather": {
+        "exec": "~/.config/waybar/scripts/weather.sh Sheffield+UK",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "interval": 3600
+    }
+}
