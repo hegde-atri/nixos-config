@@ -23,6 +23,7 @@
   - [[#overlays][Overlays]]
 - [[#power-management][Power management]]
 - [[#sound][Sound]]
+  - [[#bluetooth][Bluetooth]]
 - [[#hyprland][Hyprland]]
 - [[#user-customisation][User customisation]]
   - [[#user][User]]
@@ -171,6 +172,12 @@
     pulse.enable = true;
     jack.enable = true;
   };
+#+end_src
+
+** Bluetooth
+#+begin_src nix :tangle configuration.nix
+  hardware.bluetooth.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 #+end_src
 
 * Hyprland

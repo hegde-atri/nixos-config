@@ -49,8 +49,8 @@
     virt-manager
     direnv
     wget
-    nushell
     pfetch
+    nushell
     neovim
     emacs
     firefox
@@ -98,6 +98,9 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   programs.hyprland = {
     enable = true;
