@@ -30,11 +30,85 @@
     icons = true;
     enableZshIntegration = true;
   };
+  # MPV
+  programs.mpv = {
+    enable = true;
+    package = pkgs.mpv-unwrapped.wrapper {
+      mpv = pkgs.mpv-unwrapped.override { vapoursynthSupport = true; };
+      youtubeSupport = true;
+    };
+    config = {
+      profile = "gpu-hq";
+      force-window = true;
+      ytdl-format = "bestvideo+bestaudio";
+    };
+  };
 
+  home.pointerCursor = {
+    name = "Capitaine Cursors";
+    package = pkgs.capitaine-cursors;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/desktop/interface" = {
+        gtk-theme = "adw-gtk3-dark";
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
+  };
+
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Capitaine Cursors";
+      package = pkgs.capitaine-cursors;
+    };
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
+    # theme = {
+    #   name = "Adwaita-Dark";
+    #   package = pkgs.gnome-themes-extra;
+    # };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
 
   # Activity Watch
   services.activitywatch = {
     enable = true;
+    watchers = {
+      aw-watcher-windows = {
+        package = pkgs.activitywatch;
+        settings = {
+          poll_time = 2;
+        };
+      };
+    };
   };
 
   # Gnome keyring
@@ -43,10 +117,8 @@
   };
 
   # GNU GPG
-  programs.gpg.enable = true;
-  services.gpg-agent = {
+  programs.gpg = {
     enable = true;
-    enableZshIntegration = true;
   };
 
   # SSH
@@ -57,6 +129,43 @@
   programs.foot = {
     enable = true;
     server.enable = true;
+    settings = {
+      main = {
+        app-id = "foot";
+        title = "foot";
+        font = "JetBrainsMono Nerd Font:size=8";
+        # dpi-aware = "yes";
+        pad = "10x10 center";
+      };
+      cursor = {
+        style = "beam";
+        blink = "yes";
+      };
+      colors = {
+        alpha = "0.9";
+        background = "14151b";
+        foreground = "f8f8f2";
+        regular0 = "21222c";
+        regular1 = "ff5555";
+        regular2 = "50fa7b";
+        regular3 = "f1fa8c";
+        regular4 = "bd93f9";
+        regular5 = "ff79c6";
+        regular6 = "8be9fd";
+        regular7 = "f8f8f2";
+        bright0 = "6272a4";
+        bright1 = "ff6e6e";
+        bright2 = "69ff94";
+        bright3 = "ffffa5";
+        bright4 = "d6acff";
+        bright5 = "ff92df";
+        bright6 = "a4ffff";
+        bright7 = "ffffff";
+        selection-foreground="ffffff";
+        selection-background="44475a";
+        urls = "8be9fd";
+      };
+    };
   };
 
   programs.direnv = {
@@ -67,9 +176,16 @@
     enable = true;
   };
 
+  services.kanshi = {
+    enable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      exec-once = [
+        "hyprctl setcursor Capitaine-Cursors 32"
+      ];
       monitor = [
         "eDP-1,preferred,0x1080,1.0"
         "DP-1,1920x1080@144,0x0,1.0"
@@ -88,7 +204,10 @@
         "10, monitor:eDP-1"
       ];
       "$mainMod" = "SUPER";
-      cursor.inactive_timeout = 0;
+      cursor = {
+        inactive_timeout = 0;
+        enable_hyprcursor = false;
+      };
       # Input Settings
       input = {
         kb_layout = "gb";
@@ -246,6 +365,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    nautilus
+    gtk3
+    pfetch
+    yt-dlp
+    _7zz
+    joshuto
+    anytype
+    btop
     unzip
     cmake
     gnumake
@@ -317,6 +444,13 @@
   #  /etc/profiles/per-user/mizuuu/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+    QT_QPA_PLATFORM        = "wayland";
+    SDL_VIDEODRIVER        = "wayland";
+    CLUTTER_BACKEND        = "wayland";
+    GDK_BACKEND            = "wayland";
+    MOZ_ENABLE_WAYLAND     = "1";
+    XDG_SESSION_TYPE       = "wayland";
+    NIXOS_OZONE_WL = "1";
     EDITOR = "emacs";
   };
 

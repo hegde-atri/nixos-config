@@ -26,6 +26,18 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+  };
+  services.blueman.enable = true;
+
+  # Auto CPU Freq
+  services.auto-cpufreq = {
+    enable = true;
+    # TODO settings;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/London";
 
@@ -48,10 +60,16 @@
   # You can disable this if you're only using the Wayland session.
   # services.xserver.enable = true;
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry.gtk2;
+    enableSSHSupport = true;
+  };
+
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
 
   programs.hyprland.enable = true;
   # programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
@@ -66,7 +84,9 @@
   console.keyMap = "uk";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -81,7 +101,7 @@
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -128,6 +148,11 @@
       "mizuuu" = import ./home.nix;
     };
   };
+
+  nix.settings.auto-optimise-store = true;
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "--delete-older-than +6";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
