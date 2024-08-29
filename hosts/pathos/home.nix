@@ -30,6 +30,9 @@
     icons = true;
     enableZshIntegration = true;
   };
+  services.mako = {
+    enable = true;
+  };
   # MPV
   programs.mpv = {
     enable = true;
@@ -182,171 +185,254 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = {
-      exec-once = [
-        "hyprctl setcursor Capitaine-Cursors 32"
-      ];
-      monitor = [
-        "eDP-1,preferred,0x1080,1.0"
-        "DP-1,1920x1080@144,0x0,1.0"
-        "HDMI-A-1,preferred,0x0,1.0"
-      ];
-      workspace = [
-        "1, monitor:DP-1"
-        "2, monitor:DP-1"
-        "3, monitor:DP-1"
-        "4, monitor:DP-1"
-        "5, monitor:DP-1"
-        "6, monitor:eDP-1"
-        "7, monitor:eDP-1"
-        "8, monitor:eDP-1"
-        "9, monitor:eDP-1"
-        "10, monitor:eDP-1"
-      ];
-      "$mainMod" = "SUPER";
-      cursor = {
-        inactive_timeout = 0;
-        enable_hyprcursor = false;
-      };
-      # Input Settings
-      input = {
-        kb_layout = "gb";
-        numlock_by_default = true;
-        follow_mouse = 2;
-        touchpad = {
-          natural_scroll = false;
-        };
-        sensitivity = 0.1;
-        accel_profile = "flat";
-      };
-      # General Settings
-      general = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 1;
-        "col.active_border" = "rgba(938aa9ff) rgba(7aa89fff) 45deg";
-        "col.inactive_border" = "rgba(1a1a1aff)";
-        layout = "dwindle";
-      };
-      decoration = {
-        rounding = 2;
-        blur = {
-          enabled = true;
-          size = 4;
-          passes = 1;
-          new_optimizations = true;
-        };
-        drop_shadow = true;
-        shadow_range = 0;
-      };
-      animations = {
-        enabled = true;
-        bezier = [
-          "linear,0,0,1,1"
-          "overshot,0.05,0.9,0.1,1.1"
-          "easeOut,0.25, 1, 0.5, 1"
-        ];
-        animation = [
-          "windows,1,3,easeOut,slide"
-          "workspaces,1,3,easeOut,slidefade"
-          "fade,1,5,default"
-        ];
+    extraConfig = ''
+exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
+exec-once=[workspace 4 silent] ticktick
 
-      };
-      windowrulev2 = [
-        "float,class:^(firefox)$,title:^(Picture-in-Picture)$"
-        "pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
-        "float,class:^(firefox)$,title:^()$"
-        "idleinhibit always, fullscreen:1"
-      ];
-      windowrule = [
-        "opacity 1.0 0.8, foot"
-      ];
+monitor=eDP-1,preferred,0x1080,1.0
+monitor=DP-1,1920x1080@120,0x0,1.0
+monitor=HDMI-A-1,preferred,0x0,1.0
 
-      bind = [
-        "$mainMod, return, exec, footclient"
-        "$mainMod, U, exec, firefox"
-        "$mainMod, Y, exec, emacsclient -nc"
-        "$mainMod, O, exec, hyprlock"
-        "$mainMod, P, exec, wlogout"
-        "$mainMod, space, exec, pkill fuzzel || fuzzel"
-        "$mainMod, W, exec, pkill set-bg || ~/.local/bin/custom/set-bg"
-        "$mainMod, E, exec, pkill wofi-emoji || wofi-emoji"
-        "$mainMod SHIFT, C, exec, hyprpicker -ar"
-        "$mainMod, Q, killactive"
-        "$mainMod SHIFT, Q, exec, kill $(hyprctl activewindow | rg 'pid' | rg -oe '[0-9]+')"
-        "$mainMod ALT, Q, exit"
-        "$mainMod, V, togglefloating"
-        "$mainMod, X, pin"
-        "$mainMod, F, fullscreen"
-        "$mainMod SHIFT, F, fullscreenstate, 0, 2"
-        "$mainMod, T, pseudo, # dwindle"
-        "$mainMod, R, togglesplit, # dwindle"
-        "$mainMod, G, togglegroup,"
-        "ALT, TAB, changegroupactive, f"
-        "ALT SHIFT, TAB, changegroupactive, b"
-        "ALT SHIFT, P, exec, ~/.config/hypr/scripts/toggle_animations.sh"
+workspace= 1, monitor:DP-1
+workspace= 2, monitor:DP-1
+workspace= 3, monitor:DP-1
+workspace= 4, monitor:DP-1
+workspace= 5, monitor:DP-1
+workspace= 6, monitor:eDP-1
+workspace= 7, monitor:eDP-1
+workspace= 8, monitor:eDP-1
+workspace= 9, monitor:eDP-1
+workspace= 10, monitor:eDP-1
+dwindle {
+    pseudotile = yes
+    preserve_split = true
+    split_width_multiplier = 1.5
+    # always split to the right
+    force_split = 2
+    no_gaps_when_only = true
+}
 
-        "SUPER_SHIFT,S,movetoworkspace,special"
-        "SUPER,S,togglespecialworkspace"
+gestures {
+    workspace_swipe = true
+}
+group{
+col.border_active = 0xa046e0ff
+col.border_inactive = 0x46afe0ff
+groupbar {
+    enabled = true
+    font_family = JetbrainsMono
+    render_titles = true
+    height = 2
+    text_color = 0xff000000
+    col.active = 0x9329f0ff
+    col.inactive = 0x29b1f0ff
+}
+}
+input {
+    kb_layout = gb
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+    numlock_by_default = true
 
-        ",F1,pass,^(com\.obsproject\.Studio)$"
-        ",F2,pass,^(com\.obsproject\.Studio)$"
-        ",F3,pass,^(com\.obsproject\.Studio)$"
-        ",F4,pass,^(com\.obsproject\.Studio)$"
+    follow_mouse = 2
+
+    touchpad {
+        natural_scroll = no
+    }
+
+    sensitivity = 0.1 # -1.0 - 1.0, 0 means no modification.
+    accel_profile = flat
+}
+general {
+    gaps_in = 0
+    gaps_out = 0
+    border_size = 1
+    col.active_border = rgba(938aa9ff) rgba(7aa89fff) 45deg
+    col.inactive_border = rgba(1a1a1aff)
+    layout = dwindle
+}
+
+decoration {
+    rounding = 2
+    blur {
+      enabled = true
+      size = 4
+      passes = 1
+      new_optimizations = true
+    }
+    drop_shadow = yes
+    shadow_range = 0
+}
+animations {
+    enabled = yes
+    bezier=linear,0,0,1,1
+    bezier=overshot,0.05,0.9,0.1,1.1
+    bezier=easeOut,0.25, 1, 0.5, 1
+    animation=windows,1,3,easeOut,slide
+    # animation=borderangle,1,100,linear,loop
+    animation=workspaces,1,3,easeOut,slidefade
+    animation=fade,1,5,default
+    #bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+    # animation=windows,1,5,default
+    # animation=border,1,5,default
+    # animation=fadeIn,1,5,default
+    # animation=workspaces,1,4,default
+    # animation = windows, 1, 7, myBezier
+    # animation=windowsOut, 1, 7, overshot
+    # animation = border, 1, 10, default
+}
+
+# --- Window Rules ---
+# windowrule=workspace 4 silent, ticktick
+windowrule=workspace 8 silent, spotify
+windowrule=workspace 9 silent, webcord
+# --- Firefox Picture in Picture ---
+windowrulev2 = float,class:^(firefox)$,title:^(Picture-in-Picture)$
+windowrulev2 = pin,class:^(firefox)$,title:^(Picture-in-Picture)$
+windowrulev2 = float,class:^(firefox)$,title:^()$
+windowrulev2 = float,class:(kitty),title:(kitty)
+# --- Flameshot fix ---
+windowrulev2=move 0 0,title:^(flameshot)
+# windowrulev2=nofullscreenrequest,title:^(flameshot)
+# --- Opacity ---
+windowrule = opacity 1.0 0.8, foot
+# Swayidle inhibit
+windowrulev2 = idleinhibit always, fullscreen:1
+
+# See https://wiki.hyprland.org/Configuring/Keywords/ for more
+$mainMod = SUPER
+
+# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+bind = $mainMod, return, exec, footclient
+bind = $mainMod, U, exec, firefox
+bind = $mainMod, Y, exec, emacsclient -nc
+bind = $mainMod, O, exec, hyprlock
+bind = $mainMod, P, exec, wlogout
+# --- eww bar ---
+bind = $mainMod, B, exec, eww open --toggle bar0
+# bind = $mainMod SHIFT, B, exec, eww open --toggle bar1
+bind = $mainMod, N, exec, eww open --toggle control_centre
+bind = $mainMod SHIFT, B, exec, pkill waybar || waybar
+# --- wofi things ---
+bind = $mainMod, space, exec, pkill fuzzel || fuzzel
+bind = $mainMod, W, exec, pkill set-bg || ~/.local/bin/custom/set-bg
+bind = $mainMod, E, exec, pkill wofi-emoji || wofi-emoji
+
+# Util
+bind = $mainMod SHIFT, C, exec, hyprpicker -ar
+
+# Window manager things
+bind = $mainMod, Q, killactive
+bind = $mainMod SHIFT, Q, exec, kill $(hyprctl activewindow | rg "pid" | rg -oe '[0-9]+')
+bind = $mainMod ALT, Q, exit
+bind = $mainMod, V, togglefloating
+bind = $mainMod, X, pin
+bind = $mainMod, F, fullscreen
+bind = $mainMod SHIFT, F, fullscreenstate, 0, 1
+bind = $mainMod, T, pseudo, # dwindle
+bind = $mainMod, R, togglesplit, # dwindle
+bind = $mainMod, G, togglegroup,
+# bind = ALT, TAB, changegroupactive, f
+bind = ALT SHIFT, TAB, changegroupactive, b
+# Enable powersave mode
+bind = ALT SHIFT, P, exec, ~/.config/hypr/scripts/toggle_animations.sh
+
+# Dynamic gaps
+binde = $mainMod, equal, exec, ~/.cargo/bin/hypr-helper gaps increase
+binde = $mainMod, minus, exec, ~/.cargo/bin/hypr-helper gaps decrease
+binde = $mainMod SHIFT, equal, exec, ~/.cargo/bin/hypr-helper gaps reset
+
+bind = SUPER_SHIFT,S,movetoworkspace,special
+bind = SUPER,S,togglespecialworkspace
+
+bind = ,F1,pass,^(com\.obsproject\.Studio)$
+bind = ,F2,pass,^(com\.obsproject\.Studio)$
+bind = ,F3,pass,^(com\.obsproject\.Studio)$
+bind = ,F4,pass,^(com\.obsproject\.Studio)$
 
 # Move focus and move windows
-        "$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, j, movefocus, d"
-        "$mainMod SHIFT, h, movewindow, l"
-        "$mainMod SHIFT, l, movewindow, r"
-        "$mainMod SHIFT, k, movewindow, u"
-        "$mainMod SHIFT, j, movewindow, d"
+bind = $mainMod, h, movefocus, l
+bind = $mainMod, l, movefocus, r
+bind = $mainMod, k, movefocus, u
+bind = $mainMod, j, movefocus, d
+bind = $mainMod SHIFT, h, movewindow, l
+bind = $mainMod SHIFT, l, movewindow, r
+bind = $mainMod SHIFT, k, movewindow, u
+bind = $mainMod SHIFT, j, movewindow, d
 
 # Resize window
-        "$mainMod CTRL, h, resizeactive, -10 0"
-        "$mainMod CTRL, l, resizeactive, 10 0"
-        "$mainMod CTRL, k, resizeactive, 0 -10"
-        "$mainMod CTRL, j, resizeactive, 0 10"
+binde = $mainMod CTRL, h, resizeactive, -10 0
+binde = $mainMod CTRL, l, resizeactive, 10 0
+binde = $mainMod CTRL, k, resizeactive, 0 -10
+binde = $mainMod CTRL, j, resizeactive, 0 10
 
 # Switch workspaces with mainMod + [0-9]
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
 
 # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
 
 # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
 
 # windows workspace navigation like keymaps
-        "$mainMod CTRL, right, workspace, e+1"
-        "$mainMod CTRL, left, workspace, e-1"
-        ",Print, exec, grimblast save area - | ~/.local/bin/custom/shadower | wl-copy"
-        "$mainMod, Print, exec, grimblast save active - | ~/.local/bin/custom/shadower | wl-copy"
-        "$mainMod SHIFT, Print, exec, grim -g '$(slurp)' - | swappy -f -"
-      ];
-    };
+bind = $mainMod CTRL, right, workspace, e+1
+bind = $mainMod CTRL, left, workspace, e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+# --- Volume keys ---
+bindel=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindel=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindl=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bind = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle
+
+# --- Media keys ---
+bind = , XF86AudioPlay, exec, playerctl play-pause
+bind = , XF86AudioNext, exec, playerctl next
+bind = , XF86AudioPrev, exec, playerctl previous
+# bind = , XF86AudioStop, exec, playerctl play-pause
+
+# --- Brightness keys ---
+binde=, XF86MonBrightnessUp, exec, brightnessctl s +10 -q
+binde=, XF86MonBrightnessDown, exec, brightnessctl s 10- -q
+
+# --- Misc ---
+bind=, Print, exec, grimblast save area - | ~/.local/bin/custom/shadower | wl-copy
+bind=$mainMod, Print, exec, grimblast save active - | ~/.local/bin/custom/shadower | wl-copy
+# bind=$mainMod, Print, exec, grimshot save active - | ~/.local/bin/custom/shadower | wl-copy
+bind=$mainMod SHIFT, Print, exec, grim -g "$(slurp)" - | swappy -f -
+
+misc {
+    always_follow_on_dnd = false
+    disable_hyprland_logo = true
+    enable_swallow = true
+    swallow_regex = foot
+}
+    '';
   };
 
   programs.kitty.enable = true;
@@ -365,6 +451,11 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    ags
+    slurp
+    grim
+    grimblast
+    wl-clipboard
     nautilus
     gtk3
     pfetch

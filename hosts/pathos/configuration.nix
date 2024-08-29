@@ -14,6 +14,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "pathos"; # Define your hostname.
@@ -35,7 +36,16 @@
   # Auto CPU Freq
   services.auto-cpufreq = {
     enable = true;
-    # TODO settings;
+    settings = {
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+      battery = {
+        governor = "powersave";
+        turbo = "auto";
+      };
+    };
   };
 
   # Set your time zone.
@@ -148,6 +158,8 @@
       "mizuuu" = import ./home.nix;
     };
   };
+
+  environment.binsh = "${pkgs.dash}/bin/dash";
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;
