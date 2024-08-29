@@ -1,0 +1,10 @@
+[[Made with Doom Emacs][https://img.shields.io/badge/Made_with-Doom_Emacs-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white]]
+[[NixOS Unstable][https://img.shields.io/badge/NixOS-unstable-blue.svg?style=flat-square&logo=NixOS&logoColor=white]]
+
+#+title: NixOS Configuration
+
+#+begin_quote
+Files that make my =~=
+#+end_quote
+
+A work in progress!
