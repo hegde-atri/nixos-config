@@ -66,8 +66,7 @@
     package = pkgs.mpv-unwrapped.wrapper {
       mpv = pkgs.mpv-unwrapped.override { vapoursynthSupport = true; };
       youtubeSupport = true;
-    };
-    config = {
+    }; config = {
       profile = "gpu-hq";
       force-window = true;
       ytdl-format = "bestvideo+bestaudio";
@@ -75,10 +74,9 @@
   };
 
   home.pointerCursor = {
-    name = "Capitaine Cursors";
+    name = "capitaine-cursors";
     package = pkgs.capitaine-cursors;
     gtk.enable = true;
-    x11.enable = true;
   };
 
   dconf = {
@@ -101,17 +99,13 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Capitaine Cursors";
+      name = "capitaine-cursors";
       package = pkgs.capitaine-cursors;
     };
     theme = {
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
     };
-    # theme = {
-    #   name = "Adwaita-Dark";
-    #   package = pkgs.gnome-themes-extra;
-    # };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -129,17 +123,17 @@
   };
 
   # Activity Watch
-  services.activitywatch = {
-    enable = true;
-    watchers = {
-      aw-watcher-windows = {
-        package = pkgs.activitywatch;
-        settings = {
-          poll_time = 2;
-        };
-      };
-    };
-  };
+  # services.activitywatch = {
+  #   enable = true;
+  #   watchers = {
+  #     aw-watcher-windows = {
+  #       package = pkgs.activitywatch;
+  #       settings = {
+  #         poll_time = 2;
+  #       };
+  #     };
+  #   };
+  # };
 
   # GNU GPG
   programs.gpg = {
@@ -159,7 +153,7 @@
         app-id = "foot";
         title = "foot";
         font = "JetBrainsMono Nerd Font:size=8";
-        # dpi-aware = "yes";
+        dpi-aware = "yes";
         pad = "10x10 center";
       };
       cursor = {
@@ -209,7 +203,8 @@
 
   programs.kitty.enable = true;
 
-  # Editorconfi and direnv
+  # Editorconfig
+  editorconfig.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -303,6 +298,7 @@
     MOZ_ENABLE_WAYLAND     = "1";
     XDG_SESSION_TYPE       = "wayland";
     NIXOS_OZONE_WL = "1";
+    XCURSOR_THEME = "capitaine-cursors";
   };
 
   # Let Home Manager install and manage itself.

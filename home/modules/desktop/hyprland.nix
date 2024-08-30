@@ -14,6 +14,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
+exec-once=hyprctl setcursor capitaine-cursors 32
 exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
 exec-once=[workspace 4 silent] ticktick
 

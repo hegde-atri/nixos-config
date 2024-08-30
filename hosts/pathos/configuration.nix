@@ -148,7 +148,12 @@
     vim
   ];
 
-  services.gnome.gnome-keyring.enable = true;
+  security = {
+    pam.services.kwallet = {
+      name = "kwallet";
+      enableKwallet = true;
+    };
+  };
 
   home-manager = {
     useGlobalPkgs = true;
