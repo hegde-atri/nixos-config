@@ -17,9 +17,8 @@ in {
       extensions = with pkgs.vscode-extensions; [
         mkhl.direnv
         equinusocio.vsc-material-theme-icons
-        alvarosannas.nix
         vscodevim.vim
-        alvarosannas.nix
+        gruntfuggly.todo-tree
 
         github.copilot
         github.copilot-chat
@@ -33,8 +32,31 @@ in {
         "files.autoSave" = "afterDelay";
         "workbench.startupEditor" = "none";
         "workbench.iconTheme" = "material-icon-theme";
-        "workbench.colorTheme" = "Thanatos";
+        "workbench.colorTheme" = "Dracula Theme";
         "editor.formatOnSave" = true;
+
+        "editor.semanticHighlighting.enabled" = true;
+        "terminal.integrated.minimumContrastRatio" = 1;
+        "window.titleBarStyle" = "custom";
+        "editor.fontFamily" = "JetBrains Mono";
+        "editor.minimap.enabled" = false;
+        "todohighlight.keywords" = [
+            {
+              "text" = "TODO:";
+              "color" = "#C678DD";
+              "backgroundColor" = "transparent";
+            }
+            {
+              "text"= "NOTE:";
+              "color" = "#C678DD";
+              "backgroundColor" = "transparent";
+            }
+            {
+              "text" = "FIXME:";
+              "color" = "#C678DD";
+              "backgroundColor" = "transparent";
+            }
+          ];
       };
     };
   };
