@@ -1,15 +1,12 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
 let
-  cfg = config.modules.editors.emacs;
+  cfg = config.modules.editors.vscode;
 in {
-  options.modules.editors.emacs = {
-    enable = mkEnableOption "Enable Emacs support";
+  options.modules.editors.vscode = {
+    enable = mkEnableOption "Enable VSCode support";
   };
 
   config = mkIf cfg.enable {
@@ -17,10 +14,12 @@ in {
       enable = true;
       enableExtensionUpdateCheck = true;
       package = pkgs.vscode;
-      extensions = with vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [
         mkhl.direnv
         equinusocio.vsc-material-theme-icons
+        alvarosannas.nix
         vscodevim.vim
+        alvarosannas.nix
 
         github.copilot
         github.copilot-chat
@@ -31,9 +30,10 @@ in {
         yoavbls.pretty-ts-errors
       ];
       userSettings = {
-        "files.autosave" = "afterDelay";
+        "files.autoSave" = "afterDelay";
         "workbench.startupEditor" = "none";
         "workbench.iconTheme" = "material-icon-theme";
+        "workbench.colorTheme" = "Thanatos";
         "editor.formatOnSave" = true;
       };
     };

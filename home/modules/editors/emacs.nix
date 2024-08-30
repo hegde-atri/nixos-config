@@ -1,7 +1,4 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -24,7 +21,7 @@ in {
       };
     };
 
-    home.packages = [
+    home.packages = with pkgs; [
       emacs-gtk
       emacsPackages.vterm
       emacsPackages.python

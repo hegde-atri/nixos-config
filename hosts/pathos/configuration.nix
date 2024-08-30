@@ -148,6 +148,8 @@
     vim
   ];
 
+  services.gnome.gnome-keyring.enable = true;
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

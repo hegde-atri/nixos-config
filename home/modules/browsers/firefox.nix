@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -10,6 +10,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.firefox pkgs.firefox-devedition ];
+    home.packages = [ pkgs.firefox ];
   };
 }

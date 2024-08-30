@@ -141,11 +141,6 @@
     };
   };
 
-  # Gnome keyring
-  services.gnome-keyring = {
-    enable = true;
-  };
-
   # GNU GPG
   programs.gpg = {
     enable = true;
@@ -245,6 +240,7 @@
     cmake
     gnumake
     spotify
+    libnotify
     kanshi
     ripgrep
     protonvpn-gui
