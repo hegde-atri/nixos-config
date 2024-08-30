@@ -10,9 +10,25 @@
     ../../home/default.nix
   ];
 
-  modules.chats.signal.enable = true;
-
-  modules.desktop.hyprland.enable = true;
+  modules = {
+    browsers = {
+      firefox.enable = true;
+    };
+    chats = {
+      signal.enable = true;
+      discord.enable = true;
+    };
+    desktop = {
+      hyprland.enable = true;
+    };
+    editors = {
+      emacs.enable = true;
+      vscode.enable = true;
+    };
+    misc = {
+      ticktick.enable = true;
+    };
+  };
 
   # ZSH
   programs.zsh = {
@@ -229,19 +245,8 @@
     cmake
     gnumake
     spotify
-    pandoc
-    texliveFull
-    emacs
-    emacsPackages.vterm
-    emacsPackages.python
-    emacsPackages.emacsql
-    emacsPackages.emacsql-sqlite
-    emacsPackages.pdf-tools
     kanshi
-    telegram-desktop
-    vesktop
     ripgrep
-    ticktick
     protonvpn-gui
     protonmail-desktop
     fd
@@ -302,7 +307,6 @@
     MOZ_ENABLE_WAYLAND     = "1";
     XDG_SESSION_TYPE       = "wayland";
     NIXOS_OZONE_WL = "1";
-    EDITOR = "emacs";
   };
 
   # Let Home Manager install and manage itself.

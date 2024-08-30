@@ -125,8 +125,6 @@
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      vscode-fhs
       git
       kdePackages.kate
     #  thunderbird
