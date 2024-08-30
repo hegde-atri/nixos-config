@@ -4,5 +4,5 @@
   imports = [
     ./modules/chats/signal.nix
     ./modules/desktop/hyprland.nix
-  ]
+  ];
 }
