@@ -14,6 +14,9 @@
     ./modules/editors/emacs.nix
     ./modules/editors/vscode.nix
 
+    ./modules/terminal/cli-tools.nix
+    ./modules/terminal/foot.nix
+
     ./modules/misc/obsidian.nix
     ./modules/misc/ticktick.nix
   ];

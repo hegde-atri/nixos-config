@@ -36,6 +36,7 @@ in {
       clang
       python3
       imagemagick
+      nixfmt-rfc-style
     ];
   };
 }

@@ -25,38 +25,15 @@
       emacs.enable = true;
       vscode.enable = true;
     };
+    terminal = {
+      cli-tools.enable = true;
+      foot.enable = true;
+    };
     misc = {
       ticktick.enable = true;
     };
   };
 
-  # ZSH
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion = {
-      enable = true;
-    };
-    syntaxHighlighting.enable = true;
-    shellAliases = {
-      cd = "z";
-    };
-  };
-  # Starship
-  programs.starship = {
-    enable = true;
-  };
-  # Zoxide
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  # Eza
-  programs.eza = {
-    enable = true;
-    icons = true;
-    enableZshIntegration = true;
-  };
   services.mako = {
     enable = true;
   };
@@ -135,59 +112,13 @@
   #   };
   # };
 
-  # GNU GPG
-  programs.gpg = {
-    enable = true;
-  };
 
   # SSH
   programs.ssh = {
     enable = false;
   };
 
-  programs.foot = {
-    enable = true;
-    server.enable = true;
-    settings = {
-      main = {
-        app-id = "foot";
-        title = "foot";
-        font = "JetBrainsMono Nerd Font:size=8";
-        dpi-aware = "yes";
-        pad = "10x10 center";
-      };
-      cursor = {
-        style = "beam";
-        blink = "yes";
-      };
-      colors = {
-        alpha = "0.9";
-        background = "14151b";
-        foreground = "f8f8f2";
-        regular0 = "21222c";
-        regular1 = "ff5555";
-        regular2 = "50fa7b";
-        regular3 = "f1fa8c";
-        regular4 = "bd93f9";
-        regular5 = "ff79c6";
-        regular6 = "8be9fd";
-        regular7 = "f8f8f2";
-        bright0 = "6272a4";
-        bright1 = "ff6e6e";
-        bright2 = "69ff94";
-        bright3 = "ffffa5";
-        bright4 = "d6acff";
-        bright5 = "ff92df";
-        bright6 = "a4ffff";
-        bright7 = "ffffff";
-        selection-foreground="ffffff";
-        selection-background="44475a";
-        urls = "8be9fd";
-      };
-    };
-  };
-
-  programs.direnv = {
+  services.syncthing = {
     enable = true;
   };
 
@@ -199,12 +130,6 @@
   services.kanshi = {
     enable = true;
   };
-
-
-  programs.kitty.enable = true;
-
-  # Editorconfig
-  editorconfig.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -219,15 +144,13 @@
   # environment.
   home.packages = with pkgs; [
     ags
-    slurp
-    grim
-    grimblast
     wl-clipboard
     nautilus
     gtk3
     pfetch
     yt-dlp
     _7zz
+    lsix
     joshuto
     anytype
     btop
@@ -291,14 +214,6 @@
   #  /etc/profiles/per-user/mizuuu/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    QT_QPA_PLATFORM        = "wayland";
-    SDL_VIDEODRIVER        = "wayland";
-    CLUTTER_BACKEND        = "wayland";
-    GDK_BACKEND            = "wayland";
-    MOZ_ENABLE_WAYLAND     = "1";
-    XDG_SESSION_TYPE       = "wayland";
-    NIXOS_OZONE_WL = "1";
-    XCURSOR_THEME = "capitaine-cursors";
   };
 
   # Let Home Manager install and manage itself.

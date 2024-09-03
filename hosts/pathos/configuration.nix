@@ -123,13 +123,15 @@
     isNormalUser = true;
     description = "Atri Hegde";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       git
       kdePackages.kate
     #  thunderbird
     ];
   };
+
+  virtualisation.docker.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -154,6 +156,9 @@
       enableKwallet = true;
     };
   };
+
+  # TODO: fstrim
+  # Autoupgrade
 
   home-manager = {
     useGlobalPkgs = true;
