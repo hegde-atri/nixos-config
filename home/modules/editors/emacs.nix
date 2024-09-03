@@ -37,6 +37,7 @@ in {
       python3
       imagemagick
       nixfmt-rfc-style
+      nil
     ];
   };
 }

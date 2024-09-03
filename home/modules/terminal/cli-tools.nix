@@ -93,6 +93,11 @@ in {
       enable = true;
     };
 
+    # fd
+    programs.fd = {
+      enable = true;
+    };
+
     # GNU GPG
     programs.gpg = {
       enable = true;

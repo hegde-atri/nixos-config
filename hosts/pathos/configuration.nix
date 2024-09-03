@@ -2,15 +2,39 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+  stylix.image = ../../config/wallpaper.png;
+  stylix.cursor.package = pkgs.bibata-cursors;
+  stylix.cursor.name = "Bibata-Modern-Ice";
+  stylix.fonts = {
+    monospace = {
+      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+      name = "JetBrainsMono Nerd Font Mono";
+    };
+    sansSerif = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans";
+    };
+    serif = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Serif";
+    };
+  };
+  stylix.polarity = "dark";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -123,11 +147,15 @@
     isNormalUser = true;
     description = "Atri Hegde";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = with pkgs; [
       git
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -146,9 +174,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
+  environment.systemPackages = with pkgs; [ vim ];
 
   security = {
     pam.services.kwallet = {
@@ -163,7 +189,9 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     users = {
       "mizuuu" = import ./home.nix;
     };
@@ -176,7 +204,10 @@
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than +6";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

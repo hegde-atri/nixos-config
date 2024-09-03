@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -6,9 +11,7 @@
   home.username = "mizuuu";
   home.homeDirectory = "/home/mizuuu";
 
-  imports = [
-    ../../home/default.nix
-  ];
+  imports = [ ../../home/default.nix ];
 
   modules = {
     browsers = {
@@ -26,7 +29,10 @@
       vscode.enable = true;
     };
     terminal = {
-      cli-tools.enable = true;
+      cli-tools = {
+        enable = true;
+        git-sign = true;
+      };
       foot.enable = true;
     };
     misc = {
@@ -43,7 +49,8 @@
     package = pkgs.mpv-unwrapped.wrapper {
       mpv = pkgs.mpv-unwrapped.override { vapoursynthSupport = true; };
       youtubeSupport = true;
-    }; config = {
+    };
+    config = {
       profile = "gpu-hq";
       force-window = true;
       ytdl-format = "bestvideo+bestaudio";
@@ -56,48 +63,48 @@
     gtk.enable = true;
   };
 
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        gtk-theme = "adw-gtk3-dark";
-        color-scheme = "prefer-dark";
-      };
-    };
-  };
+  # dconf = {
+  #   enable = true;
+  #   settings = {
+  #     "org/gnome/desktop/interface" = {
+  #       gtk-theme = "adw-gtk3-dark";
+  #       color-scheme = "prefer-dark";
+  #     };
+  #   };
+  # };
 
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk3";
+  #   style.name = "adwaita-dark";
+  #   style.package = pkgs.adwaita-qt;
+  # };
 
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = "capitaine-cursors";
-      package = pkgs.capitaine-cursors;
-    };
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-  };
+  # gtk = {
+  #   enable = true;
+  #   cursorTheme = {
+  #     name = "capitaine-cursors";
+  #     package = pkgs.capitaine-cursors;
+  #   };
+  #   theme = {
+  #     name = "adw-gtk3-dark";
+  #     package = pkgs.adw-gtk3;
+  #   };
+  #   iconTheme = {
+  #     name = "Papirus-Dark";
+  #     package = pkgs.papirus-icon-theme;
+  #   };
+  #   gtk3.extraConfig = {
+  #     Settings = ''
+  #       gtk-application-prefer-dark-theme=1
+  #     '';
+  #   };
+  #   gtk4.extraConfig = {
+  #     Settings = ''
+  #       gtk-application-prefer-dark-theme=1
+  #     '';
+  #   };
+  # };
 
   # Activity Watch
   # services.activitywatch = {
@@ -111,7 +118,6 @@
   #     };
   #   };
   # };
-
 
   # SSH
   programs.ssh = {
@@ -213,8 +219,7 @@
   #
   #  /etc/profiles/per-user/mizuuu/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-  };
+  home.sessionVariables = { };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
