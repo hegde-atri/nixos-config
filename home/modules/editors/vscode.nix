@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.editors.vscode;
-in {
+in
+{
   options.modules.editors.vscode = {
     enable = mkEnableOption "Enable VSCode support";
   };
@@ -17,6 +23,7 @@ in {
       extensions = with pkgs.vscode-extensions; [
         mkhl.direnv
         equinusocio.vsc-material-theme-icons
+        dracula-theme.theme-dracula
         vscodevim.vim
         gruntfuggly.todo-tree
 
@@ -41,22 +48,22 @@ in {
         "editor.fontFamily" = "JetBrains Mono";
         "editor.minimap.enabled" = false;
         "todohighlight.keywords" = [
-            {
-              "text" = "TODO:";
-              "color" = "#C678DD";
-              "backgroundColor" = "transparent";
-            }
-            {
-              "text"= "NOTE:";
-              "color" = "#C678DD";
-              "backgroundColor" = "transparent";
-            }
-            {
-              "text" = "FIXME:";
-              "color" = "#C678DD";
-              "backgroundColor" = "transparent";
-            }
-          ];
+          {
+            "text" = "TODO:";
+            "color" = "#C678DD";
+            "backgroundColor" = "transparent";
+          }
+          {
+            "text" = "NOTE:";
+            "color" = "#C678DD";
+            "backgroundColor" = "transparent";
+          }
+          {
+            "text" = "FIXME:";
+            "color" = "#C678DD";
+            "backgroundColor" = "transparent";
+          }
+        ];
       };
     };
   };
