@@ -109,6 +109,11 @@
   programs.hyprland.enable = true;
   # programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 
+  programs.nh = {
+    enable = true;
+    flake = "/home/mizuuu/repos/nixos-config";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "gb";
@@ -175,7 +180,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ vim ];
+  environment.systemPackages = with pkgs; [
+    vim
+    docker-compose
+  ];
 
   security = {
     pam.services.kwallet = {
