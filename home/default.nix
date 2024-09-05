@@ -20,6 +20,8 @@
     ./modules/multimedia/mpv.nix
     ./modules/multimedia/spotify.nix
 
+    ./modules/misc/anytype.nix
+    ./modules/misc/syncthing.nix
     ./modules/misc/obsidian.nix
     ./modules/misc/ticktick.nix
   ];

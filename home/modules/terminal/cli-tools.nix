@@ -102,5 +102,24 @@ in {
     programs.gpg = {
       enable = true;
     };
+
+    # btop
+    programs.btop = {
+      enable = true;
+      settings = {
+        color_theme = "Default";
+        theme_background = false;
+      };
+    };
+
+    programs.joshuto = {
+      enable = true;
+    };
+
+    home.packages = with pkgs; [
+      _7zz
+      unzip
+      pfetch-rs
+    ];
   };
 }

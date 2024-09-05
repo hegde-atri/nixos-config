@@ -40,61 +40,9 @@
       spotify.enable = true;
     };
     misc = {
+      anytype.enable = true;
+      syncthing.enable = true;
       ticktick.enable = true;
-    };
-  };
-
-  services.mako = {
-    enable = true;
-  };
-  # MPV
-
-  home.pointerCursor = {
-    name = "capitaine-cursors";
-    package = pkgs.capitaine-cursors;
-    gtk.enable = true;
-  };
-
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/desktop/interface" = {
-        gtk-theme = "adw-gtk3-dark";
-        color-scheme = "prefer-dark";
-      };
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
-  };
-
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = "capitaine-cursors";
-      package = pkgs.capitaine-cursors;
-    };
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
     };
   };
 
@@ -116,38 +64,6 @@
     enable = false;
   };
 
-  services.syncthing = {
-    enable = true;
-  };
-
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        font = "JetBrains Mono:size=10";
-        fuzzy = "yes";
-        lines = 10;
-        width = 40;
-      };
-      key-bindings = {
-        prev-with-wrap = "Control+k";
-        next-with-wrap = "Control+j";
-      };
-      border = {
-        width = 1;
-        radius = 5;
-      };
-      colors = {
-        background = "282a36dd";
-        text = "f8f8f2ff";
-        match = "8be9fdff";
-        selection-match = "8be9fdff";
-        selection = "44475add";
-        selection-text = "f8f8f2ff";
-        border = "bd93f9ff";
-      };
-    };
-  };
   # Look into anyrun
 
   services.kanshi = {
@@ -166,30 +82,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    ags
-    wl-clipboard
     nautilus
     gtk3
-    pfetch
-    yt-dlp
-    _7zz
-    lsix
-    joshuto
-    anytype
-    btop
-    unzip
     cmake
     gnumake
-    libnotify
-    sass
-    gvfs
-    libdbusmenu
     bun
     kanshi
-    ripgrep
     protonvpn-gui
     protonmail-desktop
-    fd
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
