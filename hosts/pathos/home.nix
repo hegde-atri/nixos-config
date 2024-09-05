@@ -45,8 +45,9 @@
     };
     misc = {
       anytype.enable = true;
-      syncthing.enable = true;
+      notion.enable = true;
       ticktick.enable = true;
+      syncthing.enable = true;
     };
   };
 
