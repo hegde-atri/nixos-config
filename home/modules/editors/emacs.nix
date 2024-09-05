@@ -19,7 +19,7 @@ in
     # TODO clone doom in .config?
     services.emacs = {
       enable = true;
-      package = pkgs.emacs-pgtk;
+      package = pkgs.emacs29-pgtk;
       defaultEditor = true;
       startWithUserSession = "graphical";
       client = {
@@ -28,7 +28,7 @@ in
     };
 
     home.packages = with pkgs; [
-      emacs-pgtk
+      emacs29-pgtk
       emacsPackages.vterm
       emacsPackages.python
       emacsPackages.emacsql
