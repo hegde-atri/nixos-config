@@ -44,8 +44,7 @@ in
       python3
       imagemagick
       zstd
-      gnults
-      binutils
+      gnutls
 
       nixfmt-rfc-style
       nil
