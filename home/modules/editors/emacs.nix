@@ -35,6 +35,7 @@ in
       emacsPackages.emacsql-sqlite
       emacsPackages.pdf-tools
       # requirements
+      libtool
       ripgrep
       fd
       pandoc

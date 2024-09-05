@@ -1,13 +1,19 @@
-{ lib, config, pkgs, ...}:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.modules.terminal.cli-tools;
-in {
+in
+{
   options = {
     modules.terminal.cli-tools = {
       enable = mkEnableOption "Enables CLI Tools";
       git-username = lib.mkOption {
-        default = "hegde-atri";
+        default = "Atri Hegde";
         description = ''
           Your git username
         '';
@@ -40,22 +46,29 @@ in {
     };
 
     # Git
-    programs.git = {
-      enable = true;
-      userName = cfg.git-username;
-      userEmail = cfg.git-email;
-      delta = {
+    programs.git =
+      {
         enable = true;
-      };
-      extraConfig = {
-        init.defaultBranch = "master";
-      };
-    } // (if cfg.git-sign then {
-      signing = {
-        signByDefault = true;
-        key = cfg.git-signingkey;
-      };
-    } else {});
+        userName = cfg.git-username;
+        userEmail = cfg.git-email;
+        delta = {
+          enable = true;
+        };
+        extraConfig = {
+          init.defaultBranch = "master";
+        };
+      }
+      // (
+        if cfg.git-sign then
+          {
+            signing = {
+              signByDefault = true;
+              key = cfg.git-signingkey;
+            };
+          }
+        else
+          { }
+      );
 
     # eza
     programs.eza = {
