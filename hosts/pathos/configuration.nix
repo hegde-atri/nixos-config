@@ -38,6 +38,7 @@
   # stylix.polarity = "dark";
 
   # Bootloader.
+  boot.kernelParams = [ "amd_pstate=guided" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -58,6 +59,13 @@
   };
   services.blueman.enable = true;
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
   # Auto CPU Freq
   services.auto-cpufreq = {
     enable = true;
@@ -68,7 +76,7 @@
       };
       battery = {
         governor = "powersave";
-        turbo = "auto";
+        turbo = "never";
       };
     };
   };
