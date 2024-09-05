@@ -39,6 +39,10 @@
       mpv.enable = true;
       spotify.enable = true;
     };
+    proton = {
+      mail.enable = true;
+      vpn.enable = true;
+    };
     misc = {
       anytype.enable = true;
       syncthing.enable = true;
@@ -81,13 +85,12 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    pavucontrol
     nautilus
     gtk3
     cmake
     gnumake
     bun
-    protonvpn-gui
-    protonmail-desktop
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

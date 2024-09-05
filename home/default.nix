@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ...}:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -19,6 +24,10 @@
 
     ./modules/multimedia/mpv.nix
     ./modules/multimedia/spotify.nix
+
+    ./modules/proton/vpn.nix
+    ./modules/proton/pass.nix
+    ./modules/proton/mail.nix
 
     ./modules/misc/anytype.nix
     ./modules/misc/syncthing.nix
