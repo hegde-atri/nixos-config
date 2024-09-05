@@ -132,7 +132,7 @@ in
     home.packages = with pkgs; [
       _7zz
       unzip
-      pfetch-rs
+      pfetch
     ];
   };
 }

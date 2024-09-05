@@ -39,6 +39,8 @@
 
   # Bootloader.
   boot.kernelParams = [ "amd_pstate=guided" ];
+  hardware.cpu.amd.updateMicrocode = true;
+  # boot.kernelModules = [ "kvm-amd" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -58,6 +60,18 @@
     enable = true;
   };
   services.blueman.enable = true;
+
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
+
+  services.printing = {
+    enable = true;
+    startWhenNeeded = true;
+    drivers = with pkgs; [ hplip ];
+    cups-pdf.enable = true;
+  };
 
   hardware.graphics = {
     enable = true;
@@ -110,9 +124,13 @@
     enableSSHSupport = true;
   };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager = {
+    ly = {
+      enable = true;
+    };
+  };
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
   # services.desktopManager.plasma6.enable = true;
 
   programs.hyprland.enable = true;
@@ -131,11 +149,6 @@
 
   # Configure console keymap
   console.keyMap = "uk";
-
-  # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;

@@ -43,6 +43,10 @@ in
       clang
       python3
       imagemagick
+      zstd
+      gnults
+      binutils
+
       nixfmt-rfc-style
       nil
     ];

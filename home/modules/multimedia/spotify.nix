@@ -1,15 +1,24 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.multimedia.spotify;
-in {
+in
+{
   options.modules.multimedia.spotify = {
     enable = mkEnableOption "Enable Spotify Desktop APp";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.spotify ];
+    home.packages = [
+      pkgs.spotify
+      pkgs.playerctl
+    ];
   };
 }

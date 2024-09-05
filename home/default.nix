@@ -16,6 +16,10 @@
 
     ./modules/desktop/hyprland.nix
 
+    ./modules/dev/go.nix
+    ./modules/dev/python.nix
+    ./modules/dev/rust.nix
+
     ./modules/editors/emacs.nix
     ./modules/editors/vscode.nix
 
@@ -30,8 +34,9 @@
     ./modules/proton/mail.nix
 
     ./modules/misc/anytype.nix
-    ./modules/misc/syncthing.nix
+    ./modules/misc/notion.nix
     ./modules/misc/obsidian.nix
+    ./modules/misc/syncthing.nix
     ./modules/misc/ticktick.nix
   ];
 }
