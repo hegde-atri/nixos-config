@@ -17,6 +17,9 @@
     ./modules/terminal/cli-tools.nix
     ./modules/terminal/foot.nix
 
+    ./modules/multimedia/mpv.nix
+    ./modules/multimedia/spotify.nix
+
     ./modules/misc/obsidian.nix
     ./modules/misc/ticktick.nix
   ];

@@ -17,6 +17,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      swww
       swappy
       grimblast
       grim
@@ -37,6 +38,8 @@ in
       enable = true;
       extraConfig = ''
         exec-once=hyprctl setcursor capitaine-cursors 32
+        exec-once=swww-daemon
+        exec-once=eval $(gnome-keyring-daemon --daemonize)
         exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
         exec-once=[workspace 4 silent] ticktick
 

@@ -35,6 +35,10 @@
       };
       foot.enable = true;
     };
+    multimedia = {
+      mpv.enable = true;
+      spotify.enable = true;
+    };
     misc = {
       ticktick.enable = true;
     };
@@ -44,18 +48,6 @@
     enable = true;
   };
   # MPV
-  programs.mpv = {
-    enable = true;
-    package = pkgs.mpv-unwrapped.wrapper {
-      mpv = pkgs.mpv-unwrapped.override { vapoursynthSupport = true; };
-      youtubeSupport = true;
-    };
-    config = {
-      profile = "gpu-hq";
-      force-window = true;
-      ytdl-format = "bestvideo+bestaudio";
-    };
-  };
 
   home.pointerCursor = {
     name = "capitaine-cursors";
@@ -188,8 +180,11 @@
     unzip
     cmake
     gnumake
-    spotify
     libnotify
+    sass
+    gvfs
+    libdbusmenu
+    bun
     kanshi
     ripgrep
     protonvpn-gui

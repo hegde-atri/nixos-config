@@ -97,7 +97,7 @@
 
   programs.gnupg.agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry.gtk2;
+    pinentryPackage = pkgs.pinentry.gnome3;
     enableSSHSupport = true;
   };
 
@@ -185,12 +185,7 @@
     docker-compose
   ];
 
-  security = {
-    pam.services.kwallet = {
-      name = "kwallet";
-      enableKwallet = true;
-    };
-  };
+  services.gnome.gnome-keyring.enable = true;
 
   # TODO: fstrim
   # Autoupgrade
