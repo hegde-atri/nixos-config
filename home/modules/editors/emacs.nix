@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.editors.emacs;
-in {
+in
+{
   options.modules.editors.emacs = {
     enable = mkEnableOption "Enable Emacs support";
   };
@@ -13,7 +19,7 @@ in {
     # TODO clone doom in .config?
     services.emacs = {
       enable = true;
-      package = pkgs.emacs-gtk;
+      package = pkgs.emacs-pgtk;
       defaultEditor = true;
       startWithUserSession = "graphical";
       client = {
@@ -22,7 +28,7 @@ in {
     };
 
     home.packages = with pkgs; [
-      emacs-gtk
+      emacs-pgtk
       emacsPackages.vterm
       emacsPackages.python
       emacsPackages.emacsql

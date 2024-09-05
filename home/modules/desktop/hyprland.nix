@@ -108,7 +108,7 @@ in
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
       GDK_BACKEND = "wayland";
-      MOZ_ENABLE_WAYLAND = "1";
+      MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
       NIXOS_OZONE_WL = "1";
       XCURSOR_THEME = "capitaine-cursors";
