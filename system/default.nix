@@ -8,13 +8,16 @@
 {
   imports = [
     ./modules/boot
+    ./modules/environment
     ./modules/fonts
-    ./modules/services
     ./modules/hardware
-    ./modules/programs
     ./modules/hyprland
-    ./modules/plasma
     ./modules/locales
     ./modules/network
+    ./modules/nix
+    ./modules/plasma
+    ./modules/programs
+    ./modules/security
+    ./modules/services
   ];
 }

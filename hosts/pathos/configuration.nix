@@ -23,7 +23,7 @@
 
   modules.boot.enable = true;
   modules.environment.enable = true;
-  modules.font.enable = true;
+  modules.fonts.enable = true;
 
   modules.hardware.amd.cpu.enable = true;
   modules.hardware.amd.graphics.enable = true;
