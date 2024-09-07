@@ -38,7 +38,7 @@ in
       userSettings = {
         "files.autoSave" = "afterDelay";
         "workbench.startupEditor" = "none";
-        "workbench.iconTheme" = "material-icon-theme";
+        "workbench.iconTheme" = "eq-material-theme-icons-palenight";
         "workbench.colorTheme" = "Dracula Theme";
         "editor.formatOnSave" = true;
 
