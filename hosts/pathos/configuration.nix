@@ -13,6 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../system
     inputs.home-manager.nixosModules.default
   ];
 
@@ -73,8 +74,6 @@
     cups-pdf.enable = true;
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -103,6 +102,10 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+  };
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
@@ -172,7 +175,6 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  programs.zsh.enable = true;
   users.users.mizuuu = {
     isNormalUser = true;
     description = "Atri Hegde";
@@ -189,25 +191,19 @@
     ];
   };
 
-  virtualisation.docker.enable = true;
+  modules = {
+    programs.docker.enable = true;
+    programs.zsh.enable = true;
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    liberation_ttf
-    jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
+    fonts.enable = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    docker-compose
-  ];
+  environment.systemPackages = with pkgs; [ vim ];
 
   services.gnome.gnome-keyring.enable = true;
 

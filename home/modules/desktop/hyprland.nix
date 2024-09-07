@@ -180,7 +180,7 @@ in
       enable = true;
       extraConfig = ''
         exec-once=hyprctl setcursor capitaine-cursors 32
-        exec-once=swww-daemon
+        exec-once=swww-daemon && swww img ~/repos/nixos-config/config/wallpaper.png
         exec-once=eval $(gnome-keyring-daemon --daemonize)
         exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
         exec-once=[workspace 4 silent] ticktick
@@ -333,7 +333,8 @@ in
         # bind = ALT, TAB, changegroupactive, f
         bind = ALT SHIFT, TAB, changegroupactive, b
         # Enable powersave mode
-        bind = ALT SHIFT, P, exec, ~/.config/hypr/scripts/toggle_animations.sh
+        # bind = ALT SHIFT, P, exec, ~/.config/hypr/scripts/toggle_animations.sh
+        bind = $mainMod, P, exec, swaync-client -t
 
         # Dynamic gaps
         binde = $mainMod, equal, exec, ~/.cargo/bin/hypr-helper gaps increase
