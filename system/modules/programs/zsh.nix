@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.programs.zsh = {
-    enable = mkEnableOption "Enable Docker Support";
+    enable = mkEnableOption "Enable ZSH Support";
   };
 
   config = mkIf cfg.enable {
