@@ -12,16 +12,13 @@ let
 in
 {
   options.modules.boot = {
-    enable = mkEnableOption "Enable GRUB2";
+    enable = mkEnableOption "Enable systemd-boot";
   };
 
   config = mkIf cfg.enable {
-    boot.loader.grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      useOSProber = true;
-    };
+    # boot.kernelModules = [ "kvm-amd" ];
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.systemd-boot.configurationLimit = 5;
     boot.loader.efi.canTouchEfiVariables = true;
   };
 }
