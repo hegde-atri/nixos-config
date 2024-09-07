@@ -20,6 +20,7 @@
     chats = {
       signal.enable = true;
       discord.enable = true;
+      telegram.enable = true;
     };
     desktop = {
       hyprland.enable = true;

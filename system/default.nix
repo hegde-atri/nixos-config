@@ -7,9 +7,14 @@
 
 {
   imports = [
+    ./modules/boot
+    ./modules/fonts
     ./modules/services
     ./modules/hardware
     ./modules/programs
-    ./modules/fonts
+    ./modules/hyprland
+    ./modules/plasma
+    ./modules/locales
+    ./modules/network
   ];
 }
