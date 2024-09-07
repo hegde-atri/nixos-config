@@ -73,6 +73,8 @@
     cups-pdf.enable = true;
   };
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

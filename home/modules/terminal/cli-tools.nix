@@ -43,6 +43,8 @@ in
         enable = true;
       };
       syntaxHighlighting.enable = true;
+      dotDir = ".config/zsh";
+      initExtraBeforeCompInit = "pfetch";
     };
 
     # Git
