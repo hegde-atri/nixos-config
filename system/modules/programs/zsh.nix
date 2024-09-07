@@ -7,10 +7,10 @@
 
 with lib;
 let
-  cfg = config.modules.zsh;
+  cfg = config.modules.programs.zsh;
 in
 {
-  options.modules.zsh = {
+  options.modules.programs.zsh = {
     enable = mkEnableOption "Enable Docker Support";
   };
 

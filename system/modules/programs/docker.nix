@@ -7,10 +7,10 @@
 
 with lib;
 let
-  cfg = config.modules.docker;
+  cfg = config.modules.programs.docker;
 in
 {
-  options.modules.docker = {
+  options.modules.programs.docker = {
     enable = mkEnableOption "Enable Docker Support";
   };
 

@@ -7,9 +7,9 @@
 
 {
   imports = [
-    ./modules/programs/docker.nix
-    ./modules/programs/zsh.nix
-
+    ./modules/services
+    ./modules/hardware
+    ./modules/programs
     ./modules/fonts
   ];
 }

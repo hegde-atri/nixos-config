@@ -17,30 +17,7 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  # stylix.enable = true;
-  # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-  # stylix.image = ../../config/wallpaper.png;
-  # stylix.cursor.package = pkgs.bibata-cursors;
-  # stylix.cursor.name = "Bibata-Modern-Ice";
-  # stylix.fonts = {
-  #   monospace = {
-  #     package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-  #     name = "JetBrainsMono Nerd Font Mono";
-  #   };
-  #   sansSerif = {
-  #     package = pkgs.dejavu_fonts;
-  #     name = "DejaVu Sans";
-  #   };
-  #   serif = {
-  #     package = pkgs.dejavu_fonts;
-  #     name = "DejaVu Serif";
-  #   };
-  # };
-  # stylix.polarity = "dark";
-
   # Bootloader.
-  boot.kernelParams = [ "amd_pstate=guided" ];
-  hardware.cpu.amd.updateMicrocode = true;
   # boot.kernelModules = [ "kvm-amd" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
@@ -55,47 +32,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-  };
-  services.blueman.enable = true;
-
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
-
-  services.printing = {
-    enable = true;
-    startWhenNeeded = true;
-    drivers = with pkgs; [ hplip ];
-    cups-pdf.enable = true;
-  };
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    # extraPackages = [];
-    # extraPackages32 = [];
-  };
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
-  # Auto CPU Freq
-  services.auto-cpufreq = {
-    enable = true;
-    settings = {
-      charger = {
-        governor = "performance";
-        turbo = "auto";
-      };
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-      };
-    };
-  };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -134,6 +70,7 @@
       enable = true;
     };
   };
+
   # services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
   # services.desktopManager.plasma6.enable = true;
@@ -184,17 +121,25 @@
       "wheel"
       "docker"
     ];
-    packages = with pkgs; [
-      git
-      kdePackages.kate
-      #  thunderbird
-    ];
   };
 
   modules = {
-    programs.docker.enable = true;
-    programs.zsh.enable = true;
-
+    services = {
+      printing.enable = true;
+      auto-cpufreq.enable = true;
+    };
+    hardware = {
+      amd = {
+        cpu.enable = true;
+        graphics.enable = true;
+      };
+      bluetooth.enable = true;
+      ssd.enable = true;
+    };
+    programs = {
+      docker.enable = true;
+      zsh.enable = true;
+    };
     fonts.enable = true;
   };
 
@@ -207,7 +152,6 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  # TODO: fstrim
   # Autoupgrade
 
   home-manager = {
