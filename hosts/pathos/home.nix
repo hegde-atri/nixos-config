@@ -51,28 +51,11 @@
     };
   };
 
-  # Activity Watch
-  # services.activitywatch = {
-  #   enable = true;
-  #   watchers = {
-  #     aw-watcher-windows = {
-  #       package = pkgs.activitywatch;
-  #       settings = {
-  #         poll_time = 2;
-  #       };
-  #     };
-  #   };
-  # };
-
-  # SSH
-  programs.ssh = {
-    enable = false;
-  };
   # Look into anyrun
   # Look into kanshi
-  services.kanshi = {
-    enable = true;
-  };
+  # services.kanshi = {
+  #   enable = true;
+  # };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -92,7 +75,6 @@
     cmake
     gnumake
     bun
-
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
