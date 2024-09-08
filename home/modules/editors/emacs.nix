@@ -39,13 +39,12 @@ in
       ripgrep
       fd
       pandoc
-      texliveFull
+      (texlive.combine { inherit (texlive) scheme-full minted; })
+      (python3.withPackages (ps: with ps; [ pygments ]))
       clang
-      python3
       imagemagick
       zstd
       gnutls
-
       nixfmt-rfc-style
       nil
     ];
