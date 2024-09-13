@@ -60,13 +60,19 @@ let
       wayland,
     }:
 
-    stdenv.mkDerivation rec {
+    let
       pname = "signal-desktop";
+      dir = "Signal";
       version = "7.24.1";
+      url = "https://updates.signal.org/desktop/apt/pool/s/signal-desktop/signal-desktop_${version}_amd64.deb";
+      hash = "sha256-EERkypj92Gp1cVSodXxziU3aWsGDYPD83B2ndG1mQR0=";
+    in
+
+    stdenv.mkDerivation rec {
+      inherit pname version;
 
       src = fetchurl {
-        url = "https://updates.signal.org/desktop/apt/pool/s/signal-desktop/signal-desktop_${version}_amd64.deb";
-        hash = "sha256-EERkypj92Gp1cVSodXxziU3aWsGDYPD83B2ndG1mQR0=";
+        inherit url hash;
       };
 
       nativeBuildInputs = [
@@ -134,12 +140,12 @@ let
         mkdir -p $out/lib
 
         mv usr/share $out/share
-        mv opt/Signal $out/lib/Signal
+        mv "opt/${dir}" "$out/lib/${dir}"
 
         mkdir -p $out/bin
-        ln -s "$out/lib/Signal/signal-desktop" $out/bin/signal-desktop
+        ln -s "$out/lib/${dir}/${pname}" $out/bin/${pname}
 
-        ln -s libGLESv2.so "$out/lib/Signal/libGLESv2.so.2"
+        ln -s libGLESv2.so "$out/lib/${dir}/libGLESv2.so.2"
 
         runHook postInstall
       '';
@@ -150,11 +156,11 @@ let
           --suffix PATH : ${lib.makeBinPath [ xdg-utils ]}
         )
 
-        substituteInPlace $out/share/applications/signal-desktop.desktop \
-          --replace "/opt/Signal/signal-desktop" $out/bin/signal-desktop \
+        substituteInPlace $out/share/applications/${pname}.desktop \
+          --replace "/opt/${dir}/${pname}" $out/bin/${pname} \
           --replace-fail "StartupWMClass=Signal" "StartupWMClass=signal"
 
-        patchelf --add-needed ${libpulseaudio}/lib/libpulse.so "$out/lib/Signal/resources/app.asar.unpacked/node_modules/@signalapp/ringrtc/build/linux/libringrtc-x64.node"
+        patchelf --add-needed ${libpulseaudio}/lib/libpulse.so "$out/lib/${dir}/resources/app.asar.unpacked/node_modules/@signalapp/ringrtc/build/linux/libringrtc-x64.node"
       '';
 
       meta = with lib; {
@@ -162,7 +168,12 @@ let
         homepage = "https://signal.org/";
         license = licenses.agpl3Only;
         maintainers = with maintainers; [
-          mizuuu
+          eclairevoyant
+          mic92
+          equirosa
+          urandom
+          bkchr
+          teutat3s
         ];
         platforms = [ "x86_64-linux" ];
         sourceProvenance = with sourceTypes; [ binaryNativeCode ];
