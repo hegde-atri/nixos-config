@@ -18,7 +18,6 @@ in
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
-      server.enable = true;
       settings = {
         main = {
           app-id = "foot";

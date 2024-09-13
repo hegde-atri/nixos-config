@@ -17,7 +17,7 @@ in
 
   config = mkIf cfg.enable {
     services.auto-cpufreq = {
-      enable = true;
+      enable = false;
       settings = {
         charger = {
           governor = "performance";
@@ -25,7 +25,10 @@ in
         };
         battery = {
           governor = "powersave";
-          turbo = "never";
+          turbo = "auto";
+          scaling_min_freq = 400000;
+          scaling_max_freq = 2400000;
+          energy_performance_preference = "power";
         };
       };
     };

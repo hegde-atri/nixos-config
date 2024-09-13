@@ -170,7 +170,7 @@ in
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
-      GDK_BACKEND = "wayland";
+      # GDK_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
       NIXOS_OZONE_WL = "1";
@@ -178,16 +178,19 @@ in
     };
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = true;
       extraConfig = ''
         exec-once=hyprctl setcursor capitaine-cursors 32
+        exec-once=foot --server
         exec-once=swww-daemon && swww img ~/repos/nixos-config/config/wallpaper.png
         exec-once=eval $(gnome-keyring-daemon --daemonize)
+        exec-once=[workspace 5 silent] signal-desktop
         exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
         exec-once=[workspace 4 silent] ticktick
 
         monitor=eDP-1,preferred,0x1080,1.0
-        monitor=DP-1,1920x1080@120,0x0,1.0
-        monitor=HDMI-A-1,preferred,0x0,1.0
+        monitor=DP-1,1920x1080@120,0x0,auto
+        monitor=HDMI-A-1,preferred,0x0,auto
 
         workspace= 1, monitor:DP-1
         workspace= 2, monitor:DP-1
@@ -326,7 +329,7 @@ in
         bind = $mainMod, V, togglefloating
         bind = $mainMod, X, pin
         bind = $mainMod, F, fullscreen
-        bind = $mainMod SHIFT, F, fullscreenstate, 0, 1
+        bind = $mainMod SHIFT, F, fullscreenstate, 0, 2
         bind = $mainMod, T, pseudo, # dwindle
         bind = $mainMod, R, togglesplit, # dwindle
         bind = $mainMod, G, togglegroup,

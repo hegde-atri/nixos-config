@@ -19,7 +19,9 @@ in
       enable = true;
       flake = "/home/mizuuu/repos/nixos-config";
     };
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
     nix.settings.auto-optimise-store = true;
     nix.gc.automatic = true;
     nix.gc.dates = "daily";
