@@ -22,6 +22,7 @@ in
     nixpkgs.config = {
       allowUnfree = true;
     };
+    programs.nix-ld.enable = true;
     nix.settings.auto-optimise-store = true;
     nix.gc.automatic = true;
     nix.gc.dates = "daily";
