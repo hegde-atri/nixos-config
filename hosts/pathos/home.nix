@@ -15,6 +15,7 @@
 
   modules = {
     browsers = {
+      chromium.enable = true;
       firefox.enable = true;
     };
     chats = {
@@ -47,8 +48,10 @@
     misc = {
       anytype.enable = true;
       notion.enable = true;
-      ticktick.enable = true;
+      remnote.enable = true;
       syncthing.enable = true;
+      ticktick.enable = true;
+      tradingview.enable = true;
     };
   };
 
