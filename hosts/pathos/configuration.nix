@@ -72,6 +72,11 @@
     ];
   };
 
+  nix.settings.trusted-users = [
+    "@wheel"
+    "mizuuu"
+  ];
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
