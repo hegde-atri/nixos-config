@@ -22,6 +22,7 @@
 
     ./modules/editors/emacs.nix
     ./modules/editors/vscode.nix
+    ./modules/editors/android-studio.nix
 
     ./modules/terminal/cli-tools.nix
     ./modules/terminal/foot.nix

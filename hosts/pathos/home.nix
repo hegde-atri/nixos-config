@@ -29,6 +29,7 @@
     editors = {
       emacs.enable = true;
       vscode.enable = true;
+      android-studio.enable = true;
     };
     terminal = {
       cli-tools = {

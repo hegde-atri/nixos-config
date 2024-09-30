@@ -30,6 +30,8 @@ in
         github.copilot
         github.copilot-chat
 
+        ms-toolsai.jupyter
+
         jnoortheen.nix-ide
         arrterian.nix-env-selector
         esbenp.prettier-vscode
