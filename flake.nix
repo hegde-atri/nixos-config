@@ -27,6 +27,15 @@
             inputs.home-manager.nixosModules.default
           ];
         };
+        cookie = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./hosts/cookie/configuration.nix
+            inputs.home-manager.nixosModules.default
+          ];
+        };
       };
     };
 }

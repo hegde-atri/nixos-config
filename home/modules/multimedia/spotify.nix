@@ -16,9 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
-      pkgs.spotify
-      pkgs.playerctl
+    home.packages = with pkgs; [
+      spotify
+      playerctl
     ];
   };
 }

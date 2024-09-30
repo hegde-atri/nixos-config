@@ -12,12 +12,18 @@ in
 {
   options.modules.nix = {
     enable = mkEnableOption "Enable sensible nix options";
+    flake = lib.mkOption {
+      default = "/home/mizuuu/repos/nixos-config";
+      description = ''
+        Path to your flake
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
     programs.nh = {
       enable = true;
-      flake = "/home/mizuuu/repos/nixos-config";
+      flake = cfg.flake;
     };
     nixpkgs.config = {
       allowUnfree = true;
