@@ -135,6 +135,7 @@ in
       _7zz
       unzip
       pfetch
+      bat
     ];
   };
 }

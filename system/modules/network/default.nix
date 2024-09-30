@@ -14,5 +14,11 @@ in
     enable = mkEnableOption "Enable networking";
   };
 
-  config = mkIf cfg.enable { networking.networkmanager.enable = true; };
+  config = mkIf cfg.enable {
+    networking.networkmanager.enable = true;
+    environment.systemPackages = with pkgs; [
+      networkmanagerapplet
+      python312Packages.dbus-python
+    ];
+  };
 }
