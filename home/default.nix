@@ -37,6 +37,7 @@
     ./modules/misc/anytype.nix
     ./modules/misc/notion.nix
     ./modules/misc/obsidian.nix
+    ./modules/misc/openfortivpn.nix
     ./modules/misc/remnote.nix
     ./modules/misc/syncthing.nix
     ./modules/misc/ticktick.nix

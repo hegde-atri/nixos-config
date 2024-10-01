@@ -48,6 +48,7 @@
     };
     misc = {
       anytype.enable = true;
+      openfortivpn.enable = true;
       notion.enable = true;
       remnote.enable = true;
       syncthing.enable = true;
