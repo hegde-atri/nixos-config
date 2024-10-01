@@ -17,5 +17,8 @@ in
 
   config = mkIf cfg.enable {
     home.packages = [ pkgs.openfortivpn ];
+    programs.zsh.shellAliases = {
+      vpn = "sudo openfortivpn --pppd-accept-remote=1";
+    };
   };
 }
