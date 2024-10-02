@@ -21,5 +21,23 @@ in
     };
 
     home.packages = [ pkgs.android-studio ];
+
+    xdg.desktopEntries.android-studio = {
+      name = "Android Studio";
+      genericName = "Android IDE";
+      exec = "env -u QT_QPA_PLATFORM android-studio %f";
+      icon = "android-studio";
+      terminal = false;
+      categories = [
+        "Development"
+        "IDE"
+      ];
+      mimeType = [ "application/x-android-studio-project" ];
+      comment = "Develop with pleasure!";
+    };
+
+    programs.zsh.shellAliases = {
+      android-studio = "env -u QT_QPA_PLATFORM android-studio";
+    };
   };
 }
