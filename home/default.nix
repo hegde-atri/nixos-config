@@ -35,6 +35,7 @@
     ./modules/proton/mail.nix
 
     ./modules/misc/anytype.nix
+    ./modules/misc/gammastep.nix
     ./modules/misc/notion.nix
     ./modules/misc/obsidian.nix
     ./modules/misc/openfortivpn.nix
