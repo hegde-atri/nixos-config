@@ -21,6 +21,10 @@ in
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
+      default = "saved";
+      extraConfig = ''
+        GRUB_SAVEDEFAULT=true
+      '';
     };
     boot.loader.efi.canTouchEfiVariables = true;
   };
