@@ -19,6 +19,7 @@
     ./modules/dev/go.nix
     ./modules/dev/python.nix
     ./modules/dev/rust.nix
+    ./modules/dev/web.nix
 
     ./modules/editors/emacs.nix
     ./modules/editors/vscode.nix

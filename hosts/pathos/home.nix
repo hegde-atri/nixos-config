@@ -23,6 +23,9 @@
       discord.enable = true;
       telegram.enable = true;
     };
+    dev = {
+      web.enable = true;
+    };
     desktop = {
       hyprland.enable = true;
     };

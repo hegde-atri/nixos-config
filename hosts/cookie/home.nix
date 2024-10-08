@@ -22,6 +22,9 @@
       signal.enable = true;
       discord.enable = true;
     };
+    dev = {
+      web.enable = true;
+    };
     desktop = {
       hyprland.enable = true;
     };
