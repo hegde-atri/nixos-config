@@ -415,8 +415,8 @@ in
         # bind = , XF86AudioStop, exec, playerctl play-pause
 
         # --- Brightness keys ---
-        binde=, XF86MonBrightnessUp, exec, brightnessctl s +10% -q
-        binde=, XF86MonBrightnessDown, exec, brightnessctl s 10-% -q
+        binde=, XF86MonBrightnessUp, exec, brightnessctl s +5% -q
+        binde=, XF86MonBrightnessDown, exec, brightnessctl s 5-% -q
 
         # --- Misc ---
         bind=, Print, exec, grimblast save area - | wl-copy
