@@ -40,6 +40,13 @@ in
       fd
       pandoc
       (texlive.combine { inherit (texlive) scheme-full minted; })
+      (aspellWithDicts (
+        dicts: with dicts; [
+          en
+          en-computers
+          en-science
+        ]
+      ))
       (python3.withPackages (ps: with ps; [ pygments ]))
       clang
       imagemagick
