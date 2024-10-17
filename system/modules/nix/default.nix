@@ -32,7 +32,7 @@ in
     nix.settings.auto-optimise-store = true;
     nix.gc.automatic = true;
     nix.gc.dates = "daily";
-    nix.gc.options = "--delete-older-than +6";
+    nix.gc.options = "--delete-older-than 10d";
 
     nix.settings.experimental-features = [
       "nix-command"
