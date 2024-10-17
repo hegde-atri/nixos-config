@@ -31,6 +31,7 @@ in
         github.copilot-chat
 
         ms-toolsai.jupyter
+        ms-python.python
 
         jnoortheen.nix-ide
         arrterian.nix-env-selector
