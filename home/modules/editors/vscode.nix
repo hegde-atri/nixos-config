@@ -45,6 +45,7 @@ in
         "workbench.colorTheme" = "Dracula Theme";
         "editor.formatOnSave" = true;
 
+        "workbench.sideBar.location" = "right";
         "editor.semanticHighlighting.enabled" = true;
         "terminal.integrated.minimumContrastRatio" = 1;
         "window.titleBarStyle" = "custom";
