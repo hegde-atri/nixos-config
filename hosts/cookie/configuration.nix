@@ -30,6 +30,7 @@
 
   modules.hardware.audio.enable = true;
   modules.hardware.bluetooth.enable = true;
+  modules.hardware.battery.enable = true;
   modules.hardware.ssd.enable = true;
 
   modules.hyprland.enable = true;

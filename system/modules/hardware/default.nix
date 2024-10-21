@@ -7,5 +7,6 @@
     ./audio.nix
     ./ssd.nix
     ./bluetooth.nix
+    ./battery.nix
   ];
 }
