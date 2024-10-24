@@ -22,6 +22,7 @@ in
       typescript
       typescript-language-server
       prettierd
+      nodePackages.prettier
     ];
   };
 }
