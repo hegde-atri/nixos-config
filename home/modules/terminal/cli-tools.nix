@@ -75,7 +75,7 @@ in
     # eza
     programs.eza = {
       enable = true;
-      icons = true;
+      icons = "always";
       enableZshIntegration = true;
     };
 

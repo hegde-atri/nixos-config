@@ -27,7 +27,7 @@ in
   config = mkIf cfg.enable {
     fonts.packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       liberation_ttf
       jetbrains-mono
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })

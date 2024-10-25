@@ -63,9 +63,10 @@ let
     let
       pname = "signal-desktop";
       dir = "Signal";
-      version = "7.24.1";
+      version = "7.30.0";
       url = "https://updates.signal.org/desktop/apt/pool/s/signal-desktop/signal-desktop_${version}_amd64.deb";
-      hash = "sha256-EERkypj92Gp1cVSodXxziU3aWsGDYPD83B2ndG1mQR0=";
+      hash = "sha256-gpVebfjnHiZiQgjO29bhJ5JTK6KdA0vETY1jgeGuKXw=";
+
     in
 
     stdenv.mkDerivation rec {
