@@ -23,6 +23,7 @@ in
       typescript-language-server
       prettierd
       nodePackages.prettier
+      openssl
     ];
   };
 }
