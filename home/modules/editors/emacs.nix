@@ -10,6 +10,7 @@ with lib;
 let
   cfg = config.modules.editors.emacs;
 in
+# doomCommit = "424b7af45fa2c96bbee9b06f33c6cd0fc13412ac";
 {
   options.modules.editors.emacs = {
     enable = mkEnableOption "Enable Emacs support";
@@ -25,6 +26,16 @@ in
       client = {
         enable = true;
       };
+    };
+    home.sessionPath = [
+      "$HOME/.config/emacs/bin"
+    ];
+    home.activation = {
+      doomInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        if [ ! -d "$HOME/.config/emacs" ]; then
+          ${pkgs.git}/bin/git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs
+        fi
+      '';
     };
 
     home.packages = with pkgs; [

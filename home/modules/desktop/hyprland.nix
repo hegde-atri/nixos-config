@@ -208,8 +208,13 @@ in
             split_width_multiplier = 1.5
             # always split to the right
             force_split = 2
-            no_gaps_when_only = true
         }
+        workspace = w[tv1], gapsout:0, gapsin:0
+        workspace = f[1], gapsout:0, gapsin:0
+        windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+        windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+        windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+        windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
 
         gestures {
             workspace_swipe = true
@@ -256,13 +261,15 @@ in
         decoration {
             rounding = 2
             blur {
-            enabled = true
-            size = 4
-            passes = 1
-            new_optimizations = true
+              enabled = true
+              size = 4
+              passes = 1
+              new_optimizations = true
             }
-            drop_shadow = yes
-            shadow_range = 0
+            shadow {
+              enabled = yes
+              range = 0
+            }
         }
         animations {
             enabled = yes

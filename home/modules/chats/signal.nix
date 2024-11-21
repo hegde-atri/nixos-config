@@ -161,7 +161,11 @@ let
           --replace "/opt/${dir}/${pname}" $out/bin/${pname} \
           --replace-fail "StartupWMClass=Signal" "StartupWMClass=signal"
 
-        patchelf --add-needed ${libpulseaudio}/lib/libpulse.so "$out/lib/${dir}/resources/app.asar.unpacked/node_modules/@signalapp/ringrtc/build/linux/libringrtc-x64.node"
+        patchelf \
+                  --add-needed ${libpulseaudio}/lib/libpulse.so.0 \
+                  --add-rpath ${libpulseaudio}/lib \
+                  "$out/lib/${dir}/resources/app.asar.unpacked/node_modules/@signalapp/ringrtc/build/linux/libringrtc-x64.node"
+
       '';
 
       meta = with lib; {
