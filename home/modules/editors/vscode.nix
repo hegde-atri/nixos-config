@@ -51,6 +51,9 @@ in
         "window.titleBarStyle" = "custom";
         "editor.fontFamily" = "JetBrains Mono";
         "editor.minimap.enabled" = false;
+        "[typescriptreact]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        };
         "todohighlight.keywords" = [
           {
             "text" = "TODO:";

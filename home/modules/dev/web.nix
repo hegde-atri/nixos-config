@@ -21,6 +21,7 @@ in
       pnpm
       typescript
       typescript-language-server
+      deno
       prettierd
       nodePackages.prettier
       openssl

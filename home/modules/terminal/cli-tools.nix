@@ -136,6 +136,8 @@ in
       unzip
       pfetch
       bat
+      gnumake
+      cmake
     ];
   };
 }
