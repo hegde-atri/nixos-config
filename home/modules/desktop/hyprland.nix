@@ -188,9 +188,9 @@ in
         exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
         exec-once=[workspace 4 silent] ticktick
 
-        monitor=eDP-1,preferred,0x1080,1.0
-        monitor=DP-1,1920x1080@120,0x0,auto
-        monitor=HDMI-A-1,preferred,0x0,auto
+        monitor=eDP-1,preferred,0x1080,2.0
+        # monitor=DP-1,1920x1080@120,0x0,auto
+        # monitor=HDMI-A-1,preferred,0x0,auto
 
         workspace= 1, monitor:DP-1
         workspace= 2, monitor:DP-1

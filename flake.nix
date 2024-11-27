@@ -36,6 +36,15 @@
             inputs.home-manager.nixosModules.default
           ];
         };
+        opal = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./hosts/opal/configuration.nix
+            inputs.home-manager.nixosModules.default
+          ];
+        };
       };
     };
 }
