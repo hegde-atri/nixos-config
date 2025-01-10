@@ -170,6 +170,7 @@ in
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
+      GDK_SCALE = 2;
       # GDK_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
@@ -189,14 +190,17 @@ in
         exec-once=[workspace 4 silent] ticktick
 
         monitor=eDP-1,preferred,0x1080,2.0
+        xwayland {
+          force_zero_scaling = true
+        }
         # monitor=DP-1,1920x1080@120,0x0,auto
         # monitor=HDMI-A-1,preferred,0x0,auto
 
-        workspace= 1, monitor:DP-1
-        workspace= 2, monitor:DP-1
-        workspace= 3, monitor:DP-1
-        workspace= 4, monitor:DP-1
-        workspace= 5, monitor:DP-1
+        workspace= 1, monitor:DP-2
+        workspace= 2, monitor:DP-2
+        workspace= 3, monitor:DP-2
+        workspace= 4, monitor:DP-2
+        workspace= 5, monitor:DP-2
         workspace= 6, monitor:eDP-1
         workspace= 7, monitor:eDP-1
         workspace= 8, monitor:eDP-1
@@ -243,7 +247,7 @@ in
             follow_mouse = 2
 
             touchpad {
-                natural_scroll = no
+                natural_scroll = yes
             }
 
             sensitivity = 0.1 # -1.0 - 1.0, 0 means no modification.

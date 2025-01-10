@@ -15,5 +15,7 @@ in
     enable = mkEnableOption "Enable Kitty Terminal";
   };
 
-  config = mkIf cfg.enable { programs.kitty.enable = true; };
+  config = mkIf cfg.enable {
+    programs.kitty.enable = true;
+  };
 }

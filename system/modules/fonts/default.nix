@@ -30,7 +30,7 @@ in
       noto-fonts-cjk-sans
       liberation_ttf
       jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nerd-fonts.jetbrains-mono
       # Emoji
       (stdenv.mkDerivation {
         name = "apple-color-emoji";

@@ -5,6 +5,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -18,19 +19,48 @@
   ];
 
   networking.hostName = "opal"; # Define your hostname.
-home-manager.backupFileExtension = ".backup";
-  # TODO: Autoupgrade
 
+  # TODO: Autoupgrade
   modules.boot.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "acpi_backlight=native"
+    "amd_pstate=guided"
+    "amdgpu"
+  ];
+  hardware.opengl.extraPackages = with pkgs; [
+    vaapiVdpau
+    # AMD ROCm OpenCL runtime
+    rocmPackages.clr
+    rocmPackages.clr.icd
+
+    # AMDVLK drivers can be used in addition to the Mesa RADV drivers.
+    #amdvlk
+  ];
+  hardware.opengl.extraPackages32 = with pkgs; [
+    driversi686Linux.amdvlk
+  ];
+
+  environment.variables = {
+    # VAAPI and VDPAU config for accelerated video.
+    # See https://wiki.archlinux.org/index.php/Hardware_video_acceleration
+    "VDPAU_DRIVER" = "radeonsi";
+    "LIBVA_DRIVER_NAME" = "radeonsi";
+  };
+  # Most software has the HIP libraries hard-coded. Workaround:
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
   modules.environment.enable = true;
   modules.fonts.enable = true;
 
-  modules.hardware.amd.cpu.enable = true;
+  # modules.hardware.amd.cpu.enable = true;
   modules.hardware.amd.graphics.enable = true;
 
   modules.hardware.audio.enable = true;
   modules.hardware.bluetooth.enable = true;
   modules.hardware.battery.enable = true;
+  modules.hardware.fingerprint.enable = true;
   modules.hardware.ssd.enable = true;
 
   modules.hyprland.enable = true;
@@ -47,7 +77,8 @@ home-manager.backupFileExtension = ".backup";
 
   modules.security.enable = true;
 
-  modules.services.auto-cpufreq.enable = true;
+  # modules.services.auto-cpufreq.enable = true;
+  modules.services.tlp.enable = true;
   modules.services.printing.enable = true;
 
   users.users.aknee = {

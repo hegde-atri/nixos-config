@@ -16,7 +16,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    boot.kernelParams = [ "amd_pstate=guided" ];
-    hardware.cpu.amd.updateMicrocode = true;
+    # hardware.cpu.amd.updateMicrocode = true;
   };
 }

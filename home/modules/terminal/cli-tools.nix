@@ -132,6 +132,7 @@ in
     };
 
     home.packages = with pkgs; [
+      zip
       _7zz
       unzip
       pfetch

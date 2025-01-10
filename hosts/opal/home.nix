@@ -17,10 +17,12 @@
     browsers = {
       chromium.enable = true;
       firefox.enable = true;
+      zen.enable = true;
     };
     chats = {
       signal.enable = true;
       discord.enable = true;
+      texts.enable = true;
     };
     dev = {
       web.enable = true;
@@ -31,7 +33,8 @@
     editors = {
       emacs.enable = true;
       vscode.enable = true;
-      android-studio.enable = true;
+      # android-studio.enable = true;
+      zed.enable = true;
     };
     terminal = {
       cli-tools = {
@@ -50,12 +53,13 @@
     proton = {
       mail.enable = true;
       vpn.enable = true;
+      pass.enable = true;
     };
     misc = {
       anytype.enable = true;
       gammastep.enable = true;
       openfortivpn.enable = true;
-      notion.enable = true;
+      notion.enable = false;
       remnote.enable = true;
       syncthing.enable = true;
       ticktick.enable = true;
