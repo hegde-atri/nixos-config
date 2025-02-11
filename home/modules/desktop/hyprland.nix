@@ -316,7 +316,7 @@ in
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = $mainMod, return, exec, footclient
-        bind = $mainMod, U, exec, firefox
+        bind = $mainMod, U, exec, zen
         bind = $mainMod, Y, exec, emacsclient -nc
         bind = $mainMod, O, exec, hyprlock
         bind = $mainMod, P, exec, wlogout

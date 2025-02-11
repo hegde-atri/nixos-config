@@ -43,7 +43,6 @@ in
       emacsPackages.vterm
       emacsPackages.python
       emacsPackages.emacsql
-      emacsPackages.emacsql-sqlite
       emacsPackages.pdf-tools
       # requirements
       libtool
