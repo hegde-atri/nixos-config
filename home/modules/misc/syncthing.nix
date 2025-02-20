@@ -1,12 +1,18 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.misc.syncthing;
-in {
+in
+{
   options.modules.misc.syncthing = {
-    enable = mkEnableOption "Enable QT";
+    enable = mkEnableOption "Enable syncthing";
   };
 
   config = mkIf cfg.enable {

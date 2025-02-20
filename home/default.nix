@@ -26,6 +26,7 @@
     ./modules/services/syncthing.nix
 
     ./modules/editors/emacs.nix
+    ./modules/editors/intellij.nix
     ./modules/editors/vscode.nix
     ./modules/editors/android-studio.nix
     ./modules/editors/zed.nix
@@ -43,7 +44,6 @@
 
     ./modules/misc/anytype.nix
     ./modules/misc/gammastep.nix
-    ./modules/misc/notion.nix
     ./modules/misc/obsidian.nix
     ./modules/misc/openfortivpn.nix
     ./modules/misc/remnote.nix

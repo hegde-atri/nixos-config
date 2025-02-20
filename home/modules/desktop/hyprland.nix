@@ -189,7 +189,7 @@ in
         exec-once=[workspace 8 silent] spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
         exec-once=[workspace 4 silent] ticktick
 
-        monitor=eDP-1,preferred,0x1080,2.0
+        monitor=eDP-1,preferred,0x0,2.0
         xwayland {
           force_zero_scaling = true
         }

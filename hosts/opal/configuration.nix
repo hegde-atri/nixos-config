@@ -20,37 +20,42 @@
 
   networking.hostName = "opal"; # Define your hostname.
 
-  # TODO: Autoupgrade
   modules.boot.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [
-    "acpi_backlight=native"
-    "amd_pstate=guided"
-    "amdgpu"
-  ];
-  hardware.opengl.extraPackages = with pkgs; [
-    vaapiVdpau
-    # AMD ROCm OpenCL runtime
-    rocmPackages.clr
-    rocmPackages.clr.icd
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   vaapiVdpau
+  #   # AMD ROCm OpenCL runtime
+  #   rocmPackages.clr
+  #   rocmPackages.clr.icd
 
-    # AMDVLK drivers can be used in addition to the Mesa RADV drivers.
-    #amdvlk
+  #   # AMDVLK drivers can be used in addition to the Mesa RADV drivers.
+  #   #amdvlk
+  # ];
+  # hardware.opengl.extraPackages32 = with pkgs; [
+  #   driversi686Linux.amdvlk
+  # ];
+
+  # modules.services.auto-cpufreq.enable = true;
+  modules.services.tlp.enable = true;
+  boot.kernelParams = [
+    "amd_pstate=guided"
+    "amdgpu.dcdebugmask=0x10"
   ];
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "performance";
+  };
 
   environment.variables = {
     # VAAPI and VDPAU config for accelerated video.
     # See https://wiki.archlinux.org/index.php/Hardware_video_acceleration
-    "VDPAU_DRIVER" = "radeonsi";
-    "LIBVA_DRIVER_NAME" = "radeonsi";
+    # "VDPAU_DRIVER" = "radeonsi";
+    # "LIBVA_DRIVER_NAME" = "radeonsi";
   };
   # Most software has the HIP libraries hard-coded. Workaround:
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  # ];
   modules.environment.enable = true;
   modules.fonts.enable = true;
 
@@ -77,9 +82,20 @@
 
   modules.security.enable = true;
 
-  # modules.services.auto-cpufreq.enable = true;
-  modules.services.tlp.enable = true;
   modules.services.printing.enable = true;
+
+  # Platformio
+  services.udev.packages = [ pkgs.platformio ];
+  services.udev.extraRules = ''
+    # PlatformIO supported boards
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="[0-9]*", MODE="0666", GROUP="dialout"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="[0-9]*", MODE="0666", GROUP="dialout"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="[0-9]*", MODE="0666", GROUP="dialout"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="[0-9]*", MODE="0666", GROUP="dialout"
+  '';
+
+  # Create the dialout group
+  users.groups.dialout = { };
 
   users.users.aknee = {
     isNormalUser = true;
@@ -89,6 +105,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "dialout"
       "kvm"
     ];
   };

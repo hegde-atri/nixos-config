@@ -1,15 +1,21 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.chats.discord;
-in {
+in
+{
   options.modules.chats.discord = {
-    enable = mkEnableOption "Enable Discord (Vesktop: wayland support)";
+    enable = mkEnableOption "Enable Discord (Webcord: wayland support)";
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.vesktop ];
+    home.packages = [ pkgs.webcord ];
   };
 }

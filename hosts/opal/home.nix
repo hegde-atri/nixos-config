@@ -35,6 +35,7 @@
       vscode.enable = true;
       # android-studio.enable = true;
       zed.enable = true;
+      intellij.enable = true;
     };
     terminal = {
       cli-tools = {
@@ -59,7 +60,6 @@
       anytype.enable = true;
       gammastep.enable = true;
       openfortivpn.enable = true;
-      notion.enable = false;
       remnote.enable = true;
       syncthing.enable = true;
       ticktick.enable = true;
